@@ -18,7 +18,7 @@ public class Setting {
             rootSetting = FXMLLoader.load(getClass().getResource("/fxml/Setting.fxml"));
 
         } catch (IOException e) {
-            System.out.println("Ошибка подключения Setting.fxml или инстанс Scene");
+            System.out.println("Ошибка подключения Setting.fxml");
         }
 
         sceneSetting = new Scene(rootSetting, 1280, 670);
