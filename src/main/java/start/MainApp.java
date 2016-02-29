@@ -21,7 +21,7 @@ public class MainApp extends Application {
 
 
         primaryStage.setResizable(false);
-        scene.getStylesheets().add("/styles/my.css");
+        scene.getStylesheets().add("/styles/main.css");
         stage.setTitle("BLOWN");
         stage.setScene(scene);
         stage.show();

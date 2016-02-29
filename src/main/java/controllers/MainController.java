@@ -20,10 +20,12 @@ public class MainController {
     public void clickOnSetting(ActionEvent actionEvent) {
         System.out.println("setting lets go");
         Setting setting = new Setting();
+        setting.ShowScene();
     }
 
     public void clickOnStatistic(ActionEvent actionEvent) {
         System.out.println("Statistic lets go");
-        Statistic setting = new Statistic();
+        Statistic statistic = new Statistic();
+        statistic.ShowScene();
     }
 }
