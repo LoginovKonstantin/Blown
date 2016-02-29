@@ -25,7 +25,7 @@ public class Statistic {
             rootStatistic = FXMLLoader.load(getClass().getResource("/fxml/Statistic.fxml"));
 
         } catch (IOException e) {
-            System.out.println("Ошибка подключения Statistic.fxml");
+            System.out.println("Ошибка подключения Statistic.fxml !!");
         }
 
         sceneStatistic = new Scene(rootStatistic, 1290, 680);
