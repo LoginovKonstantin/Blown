@@ -1,5 +1,7 @@
 package start;
 
+import javafx.event.Event;
+import javafx.event.EventType;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -26,8 +28,10 @@ public class Setting {
         }
 
         sceneSetting = new Scene(rootSetting, 1280, 670);
-        sceneSetting.getStylesheets().add("/styles/main.css");
+        sceneSetting.getStylesheets().add("/styles/setting.css");
         MainApp.stage.setTitle("BLOWN");
         MainApp.stage.setScene(sceneSetting);
+
+
     }
 }
