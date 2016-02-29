@@ -4,7 +4,7 @@
     src: url('../fonts/AVENTURA.otf');
 }
 .root {
-     -fx-background-image: url("../images/menu.jpg");
+     -fx-background-image: url("/images/menu.jpg");
 }
 .button {
     -fx-font-family:AVENTURA;

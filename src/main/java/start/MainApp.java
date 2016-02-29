@@ -17,13 +17,11 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) throws Exception{
         stage = primaryStage;
 
-        String fxmlFile = "/fxml/main.fxml";
-        FXMLLoader loader = new FXMLLoader();
-        Parent root = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/main.fxml"));
 
         Scene scene = new Scene(root, 1280, 740);
         primaryStage.setResizable(false);
-        scene.getStylesheets().add(0, ".././resources/styles/my.css");
+        scene.getStylesheets().add(0, "/styles/my.css");
         stage.setTitle("BLOWN");
         stage.setScene(scene);
         stage.show();
