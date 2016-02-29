@@ -11,18 +11,22 @@ import javafx.stage.Stage;
 
 public class MainApp extends Application {
 
+    public static Stage stage;
+
     @Override
     public void start(Stage primaryStage) throws Exception{
+        stage = primaryStage;
+
         String fxmlFile = "/fxml/main.fxml";
         FXMLLoader loader = new FXMLLoader();
         Parent root = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
 
-        Scene scene = new Scene(root, 300, 300);
-        primaryStage.setMinHeight(420);
-        primaryStage.setMinWidth(400);
-        primaryStage.setTitle("Адресная книга");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        Scene scene = new Scene(root, 1280, 740);
+        primaryStage.setResizable(false);
+        scene.getStylesheets().add(0, ".././resources/styles/my.css");
+        stage.setTitle("BLOWN");
+        stage.setScene(scene);
+        stage.show();
     }
 
 
