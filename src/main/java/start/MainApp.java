@@ -19,7 +19,7 @@ public class MainApp extends Application {
 
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/main.fxml"));
 
-        Scene scene = new Scene(root, 1280, 680);
+        Scene scene = new Scene(root, 1280, 670);
         primaryStage.setResizable(false);
         scene.getStylesheets().add("/styles/my.css");
         stage.setTitle("BLOWN");
