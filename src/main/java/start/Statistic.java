@@ -28,7 +28,7 @@ public class Statistic {
             System.out.println("Ошибка подключения Statistic.fxml");
         }
 
-        sceneStatistic = new Scene(rootStatistic, 1280, 670);
+        sceneStatistic = new Scene(rootStatistic, 1290, 680);
         sceneStatistic.getStylesheets().add("/styles/statistic.css");
         MainApp.stage.setTitle("BLOWN");
         MainApp.stage.setScene(sceneStatistic);
@@ -42,7 +42,7 @@ public class Statistic {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    Scene scene = new Scene(root, 1280, 670);
+                    Scene scene = new Scene(root, 1290, 680);
 
                     scene.getStylesheets().add("/styles/main.css");
                     MainApp.stage.setTitle("BLOWN");

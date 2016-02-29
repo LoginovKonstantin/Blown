@@ -30,7 +30,7 @@ public class Setting {
             System.out.println("Ошибка подключения Setting.fxml");
         }
 
-        sceneSetting = new Scene(rootSetting, 1280, 670);
+        sceneSetting = new Scene(rootSetting, 1290, 680);
         sceneSetting.getStylesheets().add("/styles/setting.css");
         MainApp.stage.setTitle("BLOWN");
         MainApp.stage.setScene(sceneSetting);
@@ -44,7 +44,7 @@ public class Setting {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    Scene scene = new Scene(root, 1280, 670);
+                    Scene scene = new Scene(root, 1290, 680);
 
                     scene.getStylesheets().add("/styles/main.css");
                     MainApp.stage.setTitle("BLOWN");
