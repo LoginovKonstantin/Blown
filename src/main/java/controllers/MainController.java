@@ -15,7 +15,4 @@ public class MainController {
     @FXML
     private Label label;
 
-    public void sayHello(ActionEvent actionEvent) {
-        label.setText("HELLO");
-    }
 }

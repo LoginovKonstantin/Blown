@@ -16,10 +16,10 @@ public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         stage = primaryStage;
-
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/main.fxml"));
-
         Scene scene = new Scene(root, 1280, 670);
+
+
         primaryStage.setResizable(false);
         scene.getStylesheets().add("/styles/my.css");
         stage.setTitle("BLOWN");
