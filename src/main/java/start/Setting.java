@@ -1,10 +1,13 @@
 package start;
 
 import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 import java.io.IOException;
 
@@ -32,6 +35,22 @@ public class Setting {
         MainApp.stage.setTitle("BLOWN");
         MainApp.stage.setScene(sceneSetting);
 
+        sceneSetting.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            public void handle(KeyEvent event) {
+                if(event.getCode()== KeyCode.ESCAPE){
+                    Parent root = null;
+                    try {
+                        root = FXMLLoader.load(getClass().getResource("/fxml/main.fxml"));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    Scene scene = new Scene(root, 1280, 670);
 
+                    scene.getStylesheets().add("/styles/main.css");
+                    MainApp.stage.setTitle("BLOWN");
+                    MainApp.stage.setScene(scene);
+                }
+            }
+        });
     }
 }
