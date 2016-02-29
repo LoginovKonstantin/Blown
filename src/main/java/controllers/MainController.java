@@ -1,18 +1,27 @@
 package controllers;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import start.Setting;
 
 /**
  * Created by 4 on 28.02.2016.
  */
 public class MainController {
-    @FXML
-    private Button btn;
 
-    @FXML
-    private Label label;
+    public void clickOnNewGame(ActionEvent actionEvent) {
+        System.out.println("new game lets go");
+    }
 
+    public void clickOnStore(ActionEvent actionEvent) {
+        System.out.println("store lets go");
+        Setting setting = new Setting();
+    }
+
+    public void clickOnSetting(ActionEvent actionEvent) {
+        System.out.println("setting lets go");
+    }
+
+    public void clickOnStatistic(ActionEvent actionEvent) {
+        System.out.println("Statistic lets go");
+    }
 }

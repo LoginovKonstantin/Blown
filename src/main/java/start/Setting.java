@@ -27,6 +27,5 @@ public class Setting {
         sceneSetting.getStylesheets().add("/styles/my.css");
         MainApp.stage.setTitle("BLOWN");
         MainApp.stage.setScene(sceneSetting);
-        MainApp.stage.show();
     }
 }

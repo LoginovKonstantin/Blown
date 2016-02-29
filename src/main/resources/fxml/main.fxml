@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -9,7 +10,7 @@
    <bottom>
       <VBox alignment="TOP_CENTER" prefHeight="358.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
          <children>
-            <Button alignment="CENTER" mnemonicParsing="false" prefWidth="150.0" text="New game" textAlignment="CENTER">
+            <Button fx:id="btnNewGame" alignment="CENTER" mnemonicParsing="false" onAction="#clickOnNewGame" prefWidth="150.0" text="New game" textAlignment="CENTER">
                <VBox.margin>
                   <Insets bottom="15.0" />
                </VBox.margin>
@@ -17,7 +18,7 @@
                   <Font size="21.0" />
                </font>
             </Button>
-            <Button alignment="CENTER" mnemonicParsing="false" prefWidth="150.0" text="Store" textAlignment="CENTER">
+            <Button fx:id="btnStore" alignment="CENTER" mnemonicParsing="false" onAction="#clickOnStore" prefWidth="150.0" text="Store" textAlignment="CENTER">
                <VBox.margin>
                   <Insets bottom="15.0" />
                </VBox.margin>
@@ -25,7 +26,7 @@
                   <Font size="21.0" />
                </font>
             </Button>
-            <Button alignment="CENTER" mnemonicParsing="false" prefWidth="150.0" text="Setting" textAlignment="CENTER">
+            <Button fx:id="btnSetting" alignment="CENTER" mnemonicParsing="false" onAction="#clickOnSetting" prefWidth="150.0" text="Setting" textAlignment="CENTER">
                <VBox.margin>
                   <Insets bottom="15.0" />
                </VBox.margin>
@@ -33,7 +34,7 @@
                   <Font size="21.0" />
                </font>
             </Button>
-            <Button alignment="CENTER" mnemonicParsing="false" prefWidth="150.0" text="Statistic" textAlignment="CENTER">
+            <Button fx:id="btnStatistic" alignment="CENTER" mnemonicParsing="false" onAction="#clickOnStatistic" prefWidth="150.0" text="Statistic" textAlignment="CENTER">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
