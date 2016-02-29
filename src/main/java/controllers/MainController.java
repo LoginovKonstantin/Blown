@@ -2,6 +2,7 @@ package controllers;
 
 import javafx.event.ActionEvent;
 import start.Setting;
+import start.Statistic;
 
 /**
  * Created by 4 on 28.02.2016.
@@ -14,14 +15,15 @@ public class MainController {
 
     public void clickOnStore(ActionEvent actionEvent) {
         System.out.println("store lets go");
-        Setting setting = new Setting();
     }
 
     public void clickOnSetting(ActionEvent actionEvent) {
         System.out.println("setting lets go");
+        Setting setting = new Setting();
     }
 
     public void clickOnStatistic(ActionEvent actionEvent) {
         System.out.println("Statistic lets go");
+        Statistic setting = new Statistic();
     }
 }

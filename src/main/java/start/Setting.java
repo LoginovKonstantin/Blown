@@ -13,9 +13,7 @@ import java.io.IOException;
 public class Setting {
     private static Scene sceneSetting;
     private static Parent rootSetting;
-
-    public void Setting(){
-
+    public void ShowScene(){
         try {
             rootSetting = FXMLLoader.load(getClass().getResource("/fxml/Setting.fxml"));
 
@@ -27,5 +25,10 @@ public class Setting {
         sceneSetting.getStylesheets().add("/styles/my.css");
         MainApp.stage.setTitle("BLOWN");
         MainApp.stage.setScene(sceneSetting);
+    }
+
+
+    public void Setting(){
+
     }
 }
