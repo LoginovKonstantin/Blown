@@ -29,7 +29,7 @@ public class MainApp extends Application {
         scene.getStylesheets().add("/styles/main.css");
         stage.setTitle("BLOWN");
         stage.setScene(scene);
-        stage.show();
+
 
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             public void handle(KeyEvent event) {
@@ -38,6 +38,7 @@ public class MainApp extends Application {
                 }
             }
         });
+        stage.show();
     }
 
 
