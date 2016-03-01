@@ -1,5 +1,6 @@
 package controllers;
 
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventType;
 import javafx.fxml.FXML;
@@ -7,20 +8,24 @@ import javafx.scene.Group;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 
-import java.awt.event.ActionEvent;
 
 /**
  * Created by Егор on 29.02.2016.
  */
 public class SettingController {
     @FXML
-    RadioButton radioBtnLeft;
+    private RadioButton radioBtnLeft;
     @FXML
-    RadioButton radioBtnRight;
-    @FXML
-    ToggleGroup group;
+    private RadioButton radioBtnRight;
 
+    public static String controll = "";
 
     public void checkRadio(ActionEvent actionEvent) {
+        if(radioBtnLeft.isSelected()){
+            controll = "left";
+        }
+        if(radioBtnRight.isSelected()){
+            controll = "right";
+        }
     }
 }

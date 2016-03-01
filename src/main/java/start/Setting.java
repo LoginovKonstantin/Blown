@@ -43,16 +43,13 @@ public class Setting {
         sceneSetting.setOnKeyPressed(new EventHandler<KeyEvent>() {
             public void handle(KeyEvent event) {
                 if(event.getCode()== KeyCode.ESCAPE){
-//                    String radioBtn = new SettingController().checkRadioBtn();
-//                    System.out.println(radioBtn);
-//                    try {
-//
-//                        PrintWriter writer = new PrintWriter(new File("/files/setting.txt"));
-//                        writer.write(radioBtn);
-//                        writer.close();
-//                    } catch (FileNotFoundException e) {
-//                        System.out.println("рпоблемы при записи в файл");
-//                    }
+                    try {
+                        PrintWriter writer = new PrintWriter(new File("/files/setting"));
+                        writer.write(SettingController.controll);
+                        writer.close();
+                    } catch (FileNotFoundException e) {
+                        System.out.println("рпоблемы при записи в файл" + e);
+                    }
 
                     Parent root = null;
                     try {
