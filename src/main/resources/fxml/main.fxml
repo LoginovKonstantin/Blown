@@ -6,11 +6,19 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"  prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainController">
    <bottom>
       <VBox alignment="TOP_CENTER" prefHeight="358.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnNewGame" alignment="CENTER" mnemonicParsing="false" onAction="#clickOnNewGame" prefWidth="150.0" text="New game" textAlignment="CENTER">
+            <Button fx:id="btnNewGame" alignment="CENTER" mnemonicParsing="false" onAction="#clickOnNewGame" prefWidth="150.0" text="NEW GAME" textAlignment="CENTER">
+               <VBox.margin>
+                  <Insets bottom="15.0" top="40.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnStore" alignment="CENTER" mnemonicParsing="false" onAction="#clickOnStore" prefWidth="150.0" text="STORE" textAlignment="CENTER">
                <VBox.margin>
                   <Insets bottom="15.0" />
                </VBox.margin>
@@ -18,7 +26,7 @@
                   <Font size="21.0" />
                </font>
             </Button>
-            <Button fx:id="btnStore" alignment="CENTER" mnemonicParsing="false" onAction="#clickOnStore" prefWidth="150.0" text="Store" textAlignment="CENTER">
+            <Button fx:id="btnSetting" alignment="CENTER" mnemonicParsing="false" onAction="#clickOnSetting" prefWidth="150.0" text="SETTING" textAlignment="CENTER">
                <VBox.margin>
                   <Insets bottom="15.0" />
                </VBox.margin>
@@ -26,15 +34,7 @@
                   <Font size="21.0" />
                </font>
             </Button>
-            <Button fx:id="btnSetting" alignment="CENTER" mnemonicParsing="false" onAction="#clickOnSetting" prefWidth="150.0" text="Setting" textAlignment="CENTER">
-               <VBox.margin>
-                  <Insets bottom="15.0" />
-               </VBox.margin>
-               <font>
-                  <Font size="21.0" />
-               </font>
-            </Button>
-            <Button fx:id="btnStatistic" alignment="CENTER" mnemonicParsing="false" onAction="#clickOnStatistic" prefWidth="150.0" text="Statistic" textAlignment="CENTER">
+            <Button fx:id="btnStatistic" alignment="CENTER" mnemonicParsing="false" onAction="#clickOnStatistic" prefWidth="150.0" text="STATISTIC" textAlignment="CENTER">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
