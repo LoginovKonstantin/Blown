@@ -1,6 +1,10 @@
 package controllers;
 
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import start.Setting;
 import start.Statistic;
 

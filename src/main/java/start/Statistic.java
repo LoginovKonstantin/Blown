@@ -32,6 +32,8 @@ public class Statistic {
         sceneStatistic.getStylesheets().add("/styles/statistic.css");
         MainApp.stage.setTitle("BLOWN");
         MainApp.stage.setScene(sceneStatistic);
+//        System.out.println(sceneStatistic.getWidth() + " " + sceneStatistic.getHeight());
+//        System.out.println(MainApp.stage.getWidth() + " " + MainApp.stage.getHeight());
 
         sceneStatistic.setOnKeyPressed(new EventHandler<KeyEvent>() {
             public void handle(KeyEvent event) {

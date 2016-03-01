@@ -4,9 +4,7 @@ package start;
  * Created by 4 on 28.02.2016.
  */
 import javafx.application.Application;
-import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -24,20 +22,21 @@ public class MainApp extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/main.fxml"));
         Scene scene = new Scene(root, 1280, 670);
 
-
+        stage.setMinWidth(1280);
+        stage.setMinHeight(670);
         primaryStage.setResizable(false);
         scene.getStylesheets().add("/styles/main.css");
         stage.setTitle("BLOWN");
         stage.setScene(scene);
 
 
-        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            public void handle(KeyEvent event) {
-                if(event.getCode()== KeyCode.ESCAPE){
-                    System.exit(0);
-                }
-            }
-        });
+//        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+//            public void handle(KeyEvent event) {
+//                if(event.getCode()== KeyCode.ESCAPE){
+//                    System.exit(0);
+//                }
+//            }
+//        });
         stage.show();
     }
 
