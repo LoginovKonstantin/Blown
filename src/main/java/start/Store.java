@@ -10,26 +10,25 @@ import javafx.scene.input.KeyEvent;
 import java.io.IOException;
 
 /**
- * Created by Егор on 29.02.2016.
+ * Created by 4 on 02.03.2016.
  */
-public class Statistic {
-    private static Scene sceneStatistic;
-    private static Parent rootStatistic;
+public class Store {
+    private static Scene sceneStore;
+    private static Parent rootStore;
 
     public void showScene(){
         try {
-            rootStatistic = FXMLLoader.load(getClass().getResource("/fxml/Statistic.fxml"));
-
+            rootStore = FXMLLoader.load(getClass().getResource("/fxml/store.fxml"));
         } catch (IOException e) {
-            System.out.println("Ошибка подключения Statistic.fxml !!");
+            System.out.println("Ошибка подключения Store.fxml !!");
         }
 
-        sceneStatistic = new Scene(rootStatistic, 1290, 680);
-        sceneStatistic.getStylesheets().add("/styles/statistic.css");
+        sceneStore = new Scene(rootStore, 1290, 680);
+        sceneStore.getStylesheets().add("/styles/store.css");
         MainApp.stage.setTitle("BLOWN");
-        MainApp.stage.setScene(sceneStatistic);
+        MainApp.stage.setScene(sceneStore);
 
-        sceneStatistic.setOnKeyPressed(new EventHandler<KeyEvent>() {
+        sceneStore.setOnKeyPressed(new EventHandler<KeyEvent>() {
             public void handle(KeyEvent event) {
                 if(event.getCode()== KeyCode.ESCAPE){
                     Parent root = null;
@@ -47,6 +46,4 @@ public class Statistic {
             }
         });
     }
-
-
 }

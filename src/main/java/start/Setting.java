@@ -22,7 +22,7 @@ public class Setting {
     private static Scene sceneSetting;
     private static Parent rootSetting;
 
-    public void ShowScene(){
+    public void showScene(){
         try {
             rootSetting = FXMLLoader.load(getClass().getResource("/fxml/setting.fxml"));
         } catch (IOException e) {
