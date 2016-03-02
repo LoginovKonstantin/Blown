@@ -26,7 +26,7 @@ public class SettingController {
 
     @FXML
     private void initialize(){
-        File file = new File("C:/Users/4/IdeaProjects/Blown/src/main/resources/files/setting");
+        File file = new File("./src/main/resources/files/setting");
         try {
             String s = "";
             Scanner in = new Scanner(file);
@@ -34,7 +34,6 @@ public class SettingController {
                 s += in.nextLine();
             }
             in.close();
-            System.out.println("в файле : " + s);
             if(s.equals("up")) {
                 radioBtnUp.setSelected(true);
             }else{

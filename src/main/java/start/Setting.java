@@ -38,7 +38,7 @@ public class Setting {
             public void handle(KeyEvent event) {
                 if(event.getCode()== KeyCode.ESCAPE){
                     try {
-                        File f = new File("C:/Users/4/IdeaProjects/Blown/src/main/resources/files/setting");
+                        File f = new File("./src/main/resources/files/setting");
                         PrintWriter writer = new PrintWriter(f);
                         writer.write(SettingController.controll);
                         writer.close();
