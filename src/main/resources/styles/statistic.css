@@ -6,6 +6,7 @@
      -fx-background-image: url("/images/statistic.jpg");
 }
 .label{
+    -fx-font-family: AVENTURA;
     -fx-font-weight: bold;
     -fx-font-size:15pt;
 }

@@ -5,6 +5,7 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import start.NewGame;
 import start.Setting;
 import start.Statistic;
 import start.Store;
@@ -15,6 +16,8 @@ import start.Store;
 public class MainController {
 
     public void clickOnNewGame(ActionEvent actionEvent) {
+        NewGame newGame = new NewGame();
+        newGame.showScene();
         System.out.println("new game lets go");
     }
 
