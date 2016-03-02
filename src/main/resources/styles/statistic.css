@@ -1,34 +1,11 @@
-
 @font-face {
     font-family: 'AVENTURA';
     src: url('../fonts/AVENTURA.otf');
 }
-.root {
+.root{
      -fx-background-image: url("/images/statistic.jpg");
 }
-.button {
-    -fx-font-family:AVENTURA;
-    -fx-font-size:100pt;
-    -fx-padding: 8 15 15 15;
-    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;
-    -fx-background-radius: 8;
-    -fx-background-color:
-       linear-gradient(from 0% 93% to 0% 100%, #06495C 0%, #06495C 100%),
-       #007090,
-       #007090,
-       radial-gradient(center 50% 50%, radius 100%, #007090, #007090);
-    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
+.label{
     -fx-font-weight: bold;
-    -fx-font-size: 1.1em;
-}
-.button:hover {
-    -fx-background-color:
-        linear-gradient(from 0% 93% to 0% 100%, #007090 0%, #007090 100%),
-        #007090,
-        #007090,
-        radial-gradient(center 50% 50%, radius 100%, #12A4CC, #12A4CC);
-}
-.button:pressed {
-    -fx-padding: 10 15 13 15;
-    -fx-background-insets: 2 0 0 0,2 0 3 0, 2 0 4 0, 2 0 5 0;
+    -fx-font-size:15pt;
 }
