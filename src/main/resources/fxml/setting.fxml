@@ -6,11 +6,11 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SettingController">
    <children>
-      <RadioButton onAction="#checkRadio" fx:id="radioBtnLeft" layoutX="559.0" layoutY="462.0" mnemonicParsing="false">
+      <RadioButton onAction="#checkRadio" fx:id="radioBtnUp" layoutX="559.0" layoutY="462.0" mnemonicParsing="false">
          <toggleGroup>
             <ToggleGroup fx:id="group" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton onAction="#checkRadio" fx:id="radioBtnRight" layoutX="559.0" layoutY="517.0" mnemonicParsing="false" toggleGroup="$group" />
+      <RadioButton onAction="#checkRadio" fx:id="radioBtnDown" layoutX="559.0" layoutY="517.0" mnemonicParsing="false" toggleGroup="$group" />
    </children>
 </Pane>

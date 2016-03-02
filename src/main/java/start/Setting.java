@@ -11,44 +11,39 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
+import java.util.Scanner;
 
 /**
  * Created by Егор on 29.02.2016.
  */
 public class Setting {
+
     private static Scene sceneSetting;
     private static Parent rootSetting;
-
-    public void Setting(){
-
-    }
 
     public void ShowScene(){
         try {
             rootSetting = FXMLLoader.load(getClass().getResource("/fxml/setting.fxml"));
-
         } catch (IOException e) {
             System.out.println("Ошибка подключения Setting.fxml");
         }
-
         sceneSetting = new Scene(rootSetting, 1290, 680);
         sceneSetting.getStylesheets().add("/styles/setting.css");
         MainApp.stage.setTitle("BLOWN");
         MainApp.stage.setScene(sceneSetting);
 
+
         sceneSetting.setOnKeyPressed(new EventHandler<KeyEvent>() {
             public void handle(KeyEvent event) {
                 if(event.getCode()== KeyCode.ESCAPE){
                     try {
-                        PrintWriter writer = new PrintWriter(new File("/files/setting"));
+                        File f = new File("C:/Users/4/IdeaProjects/Blown/src/main/resources/files/setting");
+                        PrintWriter writer = new PrintWriter(f);
                         writer.write(SettingController.controll);
                         writer.close();
                     } catch (FileNotFoundException e) {
-                        System.out.println("рпоблемы при записи в файл" + e);
+                        System.out.println("проблемы при записи в файл" + e);
                     }
 
                     Parent root = null;
@@ -58,7 +53,6 @@ public class Setting {
                         e.printStackTrace();
                     }
                     Scene scene = new Scene(root, 1290, 680);
-
                     scene.getStylesheets().add("/styles/main.css");
                     MainApp.stage.setTitle("BLOWN");
                     MainApp.stage.setScene(scene);
