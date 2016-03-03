@@ -1,6 +1,7 @@
 package start;
 
 
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
@@ -74,30 +75,12 @@ public class NewGame implements ActionListener{
                 }
             }
         });
+
     }
 
     //WARNING при большом количестве вызовов, вылезает куча исключений(((9 ПЕЧАЛИТИ
     public void actionPerformed(ActionEvent e) {
-//        for(int i = 0; i < 3; i++){
-//            if(root.getChildren().get(i).getLayoutY() == 0){
-//                if(i == 0){
-//                    int randomChildren = (int)(Math.random() * 2) + 1;// второй(1) или третий(2) слой берем
-//                    root.getChildren().get(randomChildren).setLayoutY(-720);
-//                }else{
-//                    if(i == 1){
-//                        int range = (int)(Math.random() * 2);
-//                        int randomChildren = (range == 0) ? 0 : 2;//первый(0) или третий(2) слой берем
-//                        root.getChildren().get(randomChildren).setLayoutY(-720);
-//                    }else{
-//                        if(i == 2){
-//                            int randomChildren = (int)(Math.random() * 2);//первый(0) или второй(1) слой берем
-//                            root.getChildren().get(randomChildren).setLayoutY(-720);
-//                        }
-//                    }
-//                }
-//            }
-//        }
-        if(root.getChildren().get(0).getLayoutY() ==0 ){
+        if(root.getChildren().get(0).getLayoutY() == 0){
             int randomChildren = (int)(Math.random() * 2) + 1;// второй(1) или третий(2) слой берем
             root.getChildren().get(randomChildren).setLayoutY(-720);
         }else{
