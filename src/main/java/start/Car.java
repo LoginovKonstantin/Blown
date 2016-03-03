@@ -16,7 +16,7 @@ public class Car {
     private boolean isBuy;
     private boolean isSelected;
 
-    public void setCar(int id,String name,String img,double maxSpeed,double minSpeed,double width,double height,double price,boolean isBuy,boolean isSelected){
+    Car(int id,String name,String img,double maxSpeed,double minSpeed,double width,double height,double price,boolean isBuy,boolean isSelected){
         this.id=id;
         this.name=name;
         this.img=img;
@@ -28,7 +28,34 @@ public class Car {
         this.isSelected=isSelected;
     }
 
-    public Car getCar(Car car){
-        return car;
+    public String getName(){
+        return this.name;
+    }
+    public int getId(){
+        return this.id;
+    }
+    public String getImg(){
+        return this.img;
+    }
+    public double getMaxSpeed(){
+        return this.maxSpeed;
+    }
+    public double getMinSpeed(){
+        return this.minSpeed;
+    }
+    public double getWidth(){
+        return this.width;
+    }
+    public double getHeight(){
+        return this.height;
+    }
+    public double getPrice(){
+        return this.price;
+    }
+    public boolean getBuy(){
+        return this.isBuy;
+    }
+    public boolean getSelected(){
+        return this.isSelected;
     }
 }

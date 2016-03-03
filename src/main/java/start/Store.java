@@ -17,22 +17,22 @@ public class Store {
     private static Scene sceneStore;
     private static Parent rootStore;
 
-    public static ArrayList<Car> Cars=new ArrayList<Car>();
+    public static  ArrayList<Car> Cars=new ArrayList<Car>();
+
+    Car sentiel=new Car(0,"SENTIEL","./resources/images/sentiel.png",20,250,15000,73,163,false,false);
+    Car sabre=new Car(1,"SABRE","./resources/images/sabre.png",5,130,3000,76,159,false,false);
+    Car banhee=new Car(2,"BANHEE","./resources/images/banhee.png",10,180,6000,77,174,false,false);
+
+
+
+
 
     public void showScene(){
+        Cars.add(0,sentiel);
+        Cars.add(1,sabre);
+        Cars.add(2,banhee);
         try {
             rootStore = FXMLLoader.load(getClass().getResource("/fxml/store.fxml"));
-            Car sentiel=new Car();
-            Car banhee=new Car();
-            Car sabre=new Car();
-            sentiel.setCar(1,"SENTIEL","./resources/images/sentiel.png",20,250,15000,73,163,false,false);
-            sabre.setCar(2,"SABRE","./resources/images/sabre.png",5,130,3000,76,159,false,false);
-            banhee.setCar(3,"BANHEE","./resources/images/banhee.png",10,180,6000,77,174,false,false);
-
-            Cars.add(sentiel);
-            Cars.add(sabre);
-            Cars.add(banhee);
-
 
         } catch (IOException e) {
             System.out.println("Ошибка подключения Store.fxml !!");
