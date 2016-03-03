@@ -14,6 +14,7 @@ import javafx.scene.input.KeyEvent;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
 import java.util.Random;
 
@@ -21,7 +22,6 @@ import java.util.Random;
  * Created by 4 on 02.03.2016.
  */
 public class NewGame implements ActionListener{
-
     final static int HEIGHT = 1280;
     final static int WIDTH = 680;
 
@@ -37,10 +37,10 @@ public class NewGame implements ActionListener{
     private Group root;
     private Timer timerNewGame;
 
-    double y = 10;
+    double offsetY = 1;
 
     public void showScene(){
-        timerNewGame = new Timer(100, this);
+        timerNewGame = new Timer(1, this);
         timerNewGame.start();
 
         background1 = new ImageView(BACKGROUND_IMAGE1);
@@ -49,10 +49,11 @@ public class NewGame implements ActionListener{
 
         root = new Group();
         root.getChildren().add(0, background1); root.getChildren().get(0).setLayoutY(0);
-        root.getChildren().add(1, background2); root.getChildren().get(1).setLayoutY(-720);
-        root.getChildren().add(2, background3);root.getChildren().get(2).setLayoutY(-1440);
+        root.getChildren().add(1, background2);
+        root.getChildren().add(2, background3);
 
         sceneNewGame = new Scene(root, HEIGHT, WIDTH);
+
         MainApp.stage.setTitle("BLOWN");
         MainApp.stage.setScene(sceneNewGame);
 
@@ -75,13 +76,45 @@ public class NewGame implements ActionListener{
         });
     }
 
+    //WARNING при большом количестве вызовов, вылезает куча исключений(((9 ПЕЧАЛИТИ
     public void actionPerformed(ActionEvent e) {
-        if(root.getChildren().get(0).getLayoutY() == 720){
-            int randomImage = (int)(Math.random()*3);
+//        for(int i = 0; i < 3; i++){
+//            if(root.getChildren().get(i).getLayoutY() == 0){
+//                if(i == 0){
+//                    int randomChildren = (int)(Math.random() * 2) + 1;// второй(1) или третий(2) слой берем
+//                    root.getChildren().get(randomChildren).setLayoutY(-720);
+//                }else{
+//                    if(i == 1){
+//                        int range = (int)(Math.random() * 2);
+//                        int randomChildren = (range == 0) ? 0 : 2;//первый(0) или третий(2) слой берем
+//                        root.getChildren().get(randomChildren).setLayoutY(-720);
+//                    }else{
+//                        if(i == 2){
+//                            int randomChildren = (int)(Math.random() * 2);//первый(0) или второй(1) слой берем
+//                            root.getChildren().get(randomChildren).setLayoutY(-720);
+//                        }
+//                    }
+//                }
+//            }
+//        }
+        if(root.getChildren().get(0).getLayoutY() ==0 ){
+            int randomChildren = (int)(Math.random() * 2) + 1;// второй(1) или третий(2) слой берем
+            root.getChildren().get(randomChildren).setLayoutY(-720);
+        }else{
+            if(root.getChildren().get(1).getLayoutY() == 0){
+                int range = (int)(Math.random() * 2);
+                int randomChildren = (range == 0) ? 0 : 2;//первый(0) или третий(2) слой берем
+                root.getChildren().get(randomChildren).setLayoutY(-720);
+            }else{
+                if(root.getChildren().get(2).getLayoutY() == 0){
+                    int randomChildren = (int)(Math.random() * 2);//первый(0) или второй(1) слой берем
+                    root.getChildren().get(randomChildren).setLayoutY(-720);
+                }
+            }
         }
-        root.getChildren().get(0).setLayoutY((root.getChildren().get(0).getLayoutY() + y));
-        root.getChildren().get(1).setLayoutY((root.getChildren().get(1).getLayoutY() + y));
-        root.getChildren().get(2).setLayoutY((root.getChildren().get(2).getLayoutY() + y));
+        root.getChildren().get(0).setLayoutY((root.getChildren().get(0).getLayoutY() + offsetY));
+        root.getChildren().get(1).setLayoutY((root.getChildren().get(1).getLayoutY() + offsetY));
+        root.getChildren().get(2).setLayoutY((root.getChildren().get(2).getLayoutY() + offsetY));
 
     }
 

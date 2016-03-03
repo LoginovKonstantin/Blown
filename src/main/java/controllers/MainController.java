@@ -10,6 +10,8 @@ import start.Setting;
 import start.Statistic;
 import start.Store;
 
+import javax.swing.*;
+
 /**
  * Created by 4 on 28.02.2016.
  */
