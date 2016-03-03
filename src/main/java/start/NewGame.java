@@ -1,6 +1,9 @@
 package start;
 
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +14,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.util.Duration;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -22,7 +26,7 @@ import java.util.Random;
 /**
  * Created by 4 on 02.03.2016.
  */
-public class NewGame implements ActionListener{
+public class NewGame{//} implements ActionListener{
     final static int HEIGHT = 1280;
     final static int WIDTH = 680;
 
@@ -36,13 +40,11 @@ public class NewGame implements ActionListener{
 
     private Scene sceneNewGame;
     private Group root;
-    private Timer timerNewGame;
+    private Timeline timeline;
 
     double offsetY = 1;
 
     public void showScene(){
-        timerNewGame = new Timer(1, this);
-        timerNewGame.start();
 
         background1 = new ImageView(BACKGROUND_IMAGE1);
         background2 = new ImageView(BACKGROUND_IMAGE2);
@@ -71,15 +73,20 @@ public class NewGame implements ActionListener{
                     scene.getStylesheets().add("/styles/main.css");
                     MainApp.stage.setTitle("BLOWN");
                     MainApp.stage.setScene(scene);
-                    timerNewGame.stop();
+                    timeline.stop();
+
                 }
             }
         });
+        timeline = new Timeline(new KeyFrame(
+                Duration.millis(0.1),
+                ae -> doSomething()));
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
 
     }
 
-    //WARNING при большом количестве вызовов, вылезает куча исключений(((9 ПЕЧАЛИТИ
-    public void actionPerformed(ActionEvent e) {
+    public void doSomething(){
         if(root.getChildren().get(0).getLayoutY() == 0){
             int randomChildren = (int)(Math.random() * 2) + 1;// второй(1) или третий(2) слой берем
             root.getChildren().get(randomChildren).setLayoutY(-720);
