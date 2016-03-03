@@ -19,18 +19,10 @@ public class Store {
 
     public static  ArrayList<Car> Cars=new ArrayList<Car>();
 
-    Car sentiel=new Car(0,"SENTIEL","./resources/images/sentiel.png",20,250,15000,73,163,false,false);
-    Car sabre=new Car(1,"SABRE","./resources/images/sabre.png",5,130,3000,76,159,false,false);
-    Car banhee=new Car(2,"BANHEE","./resources/images/banhee.png",10,180,6000,77,174,false,false);
-
-
-
-
-
     public void showScene(){
-        Cars.add(0,sentiel);
-        Cars.add(1,sabre);
-        Cars.add(2,banhee);
+        Cars.add(new Car("SENTIEL","./resources/images/sentiel.png",20,250,15000,73,163,false,false));
+        Cars.add(new Car("SABRE","./resources/images/sabre.png",5,130,3000,76,159,false,false));
+        Cars.add(new Car("BANHEE","./resources/images/banhee.png",10,180,6000,77,174,false,false));
         try {
             rootStore = FXMLLoader.load(getClass().getResource("/fxml/store.fxml"));
 

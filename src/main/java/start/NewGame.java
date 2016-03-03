@@ -35,10 +35,9 @@ public class NewGame implements ActionListener{
 
     private Scene sceneNewGame;
     private Group root;
+    private Timer timerNewGame;
 
-    double y = 1;
-
-    Timer timerNewGame;
+    double y = 10;
 
     public void showScene(){
         timerNewGame = new Timer(100, this);
@@ -47,7 +46,12 @@ public class NewGame implements ActionListener{
         background1 = new ImageView(BACKGROUND_IMAGE1);
         background2 = new ImageView(BACKGROUND_IMAGE2);
         background3 = new ImageView(BACKGROUND_IMAGE3);
-        root = new Group(background1);
+
+        root = new Group();
+        root.getChildren().add(0, background1); root.getChildren().get(0).setLayoutY(0);
+        root.getChildren().add(1, background2); root.getChildren().get(1).setLayoutY(-720);
+        root.getChildren().add(2, background3);root.getChildren().get(2).setLayoutY(-1440);
+
         sceneNewGame = new Scene(root, HEIGHT, WIDTH);
         MainApp.stage.setTitle("BLOWN");
         MainApp.stage.setScene(sceneNewGame);
@@ -72,28 +76,13 @@ public class NewGame implements ActionListener{
     }
 
     public void actionPerformed(ActionEvent e) {
-        if(root.getLayoutY() == 680){
-            root.setClip(background2);
-//            Random r = new Random();
-//            int image = r.nextInt(3);
-//            if(image == 1){
-//
-//                root.setClip(background1);
-//                root.setLayoutY(y+HEIGHT);
-//            }else{
-//                if(image == 2){
-//                    root.setClip(background2);
-//                    root.setLayoutY(y+HEIGHT);
-//                }else{
-//                    root.setClip(background3);
-//                    root.setLayoutY(y+HEIGHT);
-//                }
-//            }
+        if(root.getChildren().get(0).getLayoutY() == 720){
+            int randomImage = (int)(Math.random()*3);
         }
-
-        root.setLayoutY(y);
-        y+=5;
-        System.out.println(root.getLayoutY());
+        root.getChildren().get(0).setLayoutY((root.getChildren().get(0).getLayoutY() + y));
+        root.getChildren().get(1).setLayoutY((root.getChildren().get(1).getLayoutY() + y));
+        root.getChildren().get(2).setLayoutY((root.getChildren().get(2).getLayoutY() + y));
 
     }
+
 }
