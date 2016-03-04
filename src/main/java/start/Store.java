@@ -32,7 +32,6 @@ public class Store {
             out.nextLine();
             while (out.hasNextLine()){
                 car=out.nextLine().split(";");
-                System.out.println("");
                 Cars.add(new Car(car[0],car[1],(Double.parseDouble(car[2])), (Double.parseDouble(car[3])),
                         (Double.parseDouble(car[4])),(Double.parseDouble(car[5])),(Double.parseDouble(car[6])),
                         (Boolean.parseBoolean(car[7])),(Boolean.parseBoolean(car[8]))));
