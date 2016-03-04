@@ -14,7 +14,7 @@ public class Car {
     private String img;
     private static int counter = 0;
 
-    public Car(String name, String img, double maxSpeed, double minSpeed,
+    public Car(String name, String img, double maxSpeed,
                double width, double height, double price, boolean isBuy, boolean isSelected){
 
         id = counter++;
@@ -34,16 +34,13 @@ public class Car {
     }
 
     public String getImg(){ return this.img; }
+
 //    public Image getImg(){
 //        return this.imgProfile;
 //    }
 
     public double getMaxSpeed(){
         return this.maxSpeed;
-    }
-
-    public double getMinSpeed(){
-        return this.minSpeed;
     }
 
     public double getWidth(){
