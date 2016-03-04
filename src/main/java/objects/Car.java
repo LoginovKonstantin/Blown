@@ -12,10 +12,13 @@ public class Car {
     private Image imgSide, imgAbove;
     private double maxSpeed, minSpeed, price, width, height;
     private boolean isBuy, isSelected;;
+    private int id;
+    private static int counter = 0;
 
     public Car(String name, Image img, double maxSpeed, double minSpeed,
                double width, double height, double price, boolean isBuy, boolean isSelected){
 
+        id = counter++;
         this.name = name;
 //        this.imgProfile = img;
         this.maxSpeed = maxSpeed;
