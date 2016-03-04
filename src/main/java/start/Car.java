@@ -1,5 +1,7 @@
 package start;
 
+import javafx.scene.image.Image;
+
 /**
  * Created by Егор on 03.03.2016.
  */
@@ -7,20 +9,15 @@ public class Car {
 
     private int id = -1;
     private String name;
-    private String img;
-    private double maxSpeed;
-    private double minSpeed;
-    private double price;
-    private double width;
-    private double height;
-    private boolean isBuy;
-    private boolean isSelected;
+    private Image imgSide, imgAbove;
+    private double maxSpeed, minSpeed, price, width, height;
+    private boolean isBuy, isSelected;;
 
-    public Car(String name, String img, double maxSpeed, double minSpeed,
+    public Car(String name, Image img, double maxSpeed, double minSpeed,
                double width, double height, double price, boolean isBuy, boolean isSelected){
         id++;
         this.name = name;
-        this.img = img;
+//        this.imgProfile = img;
         this.maxSpeed = maxSpeed;
         this.price = price;
         this.width = width;
@@ -37,9 +34,9 @@ public class Car {
         return this.id;
     }
 
-    public String getImg(){
-        return this.img;
-    }
+//    public Image getImg(){
+//        return this.imgProfile;
+//    }
 
     public double getMaxSpeed(){
         return this.maxSpeed;
