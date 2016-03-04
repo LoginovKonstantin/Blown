@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
  */
 public class Car {
 
-    private int id = -1;
+
     private String name;
     private Image imgSide, imgAbove;
     private double maxSpeed, minSpeed, price, width, height;
@@ -15,7 +15,7 @@ public class Car {
 
     public Car(String name, Image img, double maxSpeed, double minSpeed,
                double width, double height, double price, boolean isBuy, boolean isSelected){
-        id++;
+
         this.name = name;
 //        this.imgProfile = img;
         this.maxSpeed = maxSpeed;
@@ -30,9 +30,6 @@ public class Car {
         return this.name;
     }
 
-    public int getId(){
-        return this.id;
-    }
 
 //    public Image getImg(){
 //        return this.imgProfile;
