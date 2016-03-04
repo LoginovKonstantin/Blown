@@ -21,10 +21,9 @@ public class Store {
     private static Scene sceneStore;
     private static Parent rootStore;
 
-    public static ArrayList<Car> Cars = new ArrayList<Car>();
+    private static ArrayList<Car> Cars = new ArrayList<Car>();
 
-    public void showScene() {
-
+    public static ArrayList<Car> parseCars(){
         File file = new File("./src/main/resources/files/store");
         try {
             Scanner out = new Scanner(file);
@@ -41,7 +40,10 @@ public class Store {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return Cars;
+    }
 
+    public void showScene() {
         try {
             rootStore = FXMLLoader.load(getClass().getResource("/fxml/store.fxml"));
 
