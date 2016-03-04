@@ -22,27 +22,28 @@ public class SettingController {
     private RadioButton radioBtnUp;
     @FXML
     private RadioButton radioBtnDown;
-    public static String controll = "";
+    public static String controll = "up";
 
     @FXML
     private void initialize(){
         File file = new File("./src/main/resources/files/setting");
         try {
-            String s = "";
             Scanner in = new Scanner(file);
             while(in.hasNext()){
-                s += in.nextLine();
+                controll = in.nextLine();
             }
             in.close();
-            if(s.equals("up")) {
+            if(controll.equals("up")) {
                 radioBtnUp.setSelected(true);
             }else{
-                radioBtnDown.setSelected(true);
+                if(controll.equals("down")){
+                    radioBtnDown.setSelected(true);
+                }
             }
         } catch (FileNotFoundException e) {
             System.out.println("Ошибка при чтении файла" + e);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Ошибка при чтении файла" + e);
         }
     }
 

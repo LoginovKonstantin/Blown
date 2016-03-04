@@ -76,20 +76,24 @@ public class NewGame{
                     MainApp.stage.setScene(scene);
                     timeline.stop();
 
-                }
-                //необходимо настраивать + нужен класс CAR доработанный
-                if(event.getCode() == controll[0]){
-                    if(speedCar > 0.1){
-                        speedCar -= 0.05;
-                        resetTimer(timeline, speedCar);
+                }else{
+                    //необходимо настраивать + нужен класс CAR доработанный
+                    if(event.getCode() == controll[0]){
+                        if(speedCar > 1){
+                            resetTimer(timeline, speedCar);
+                            speedCar -= 0.05;
+
+                        }
+                    }else{
+                        if(event.getCode() == controll[2]){
+                            if(speedCar < 5){
+                                resetTimer(timeline, speedCar);
+                                speedCar += 0.05;
+                            }
+                        }
                     }
                 }
-                if(event.getCode() == controll[2]){
-                    if(speedCar < 10){
-                        speedCar += 0.05;
-                        resetTimer(timeline, speedCar);
-                    }
-                }
+
             }
         });
         keyFrame = new KeyFrame(Duration.millis(speedCar), ae -> moveBackground());
