@@ -8,8 +8,11 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import objects.Car;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Created by 4 on 02.03.2016.
@@ -21,8 +24,30 @@ public class Store {
     public static ArrayList<Car> Cars = new ArrayList<Car>();
 
     public void showScene() {
-//        Cars.add(new Car("SENTIEL", "./resources/images/sentiel.png", 20, 250, 15000, 73, 163, false, false));
-//        Cars.add(new Car("SABRE", "./resources/images/sabre.png", 5, 130, 3000, 76, 159, false, false));
+        File file = new File("./src/main/resources/files/store");
+        try {
+            Scanner out = new Scanner(file);
+            String[] car;
+            out.nextLine();
+            while (out.hasNextLine()){
+                car=out.nextLine().split(";");
+                System.out.println("");
+                Cars.add(new Car(car[0],car[1],(Double.parseDouble(car[2])), (Double.parseDouble(car[3])),
+                        (Double.parseDouble(car[4])),(Double.parseDouble(car[5])),(Double.parseDouble(car[6])),
+                        (Boolean.parseBoolean(car[7])),(Boolean.parseBoolean(car[8]))));
+            }
+            out.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Ошибка при чтении файла" + e);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+        //
+        //  Cars.add(new Car("SABRE", "./resources/images/sabre.png", 5, 130, 3000, 76, 159, false, false));
 //        Cars.add(new Car("BANHEE", "./resources/images/banhee.png", 10, 180, 6000, 77, 174, false, false));
         try {
             rootStore = FXMLLoader.load(getClass().getResource("/fxml/store.fxml"));
