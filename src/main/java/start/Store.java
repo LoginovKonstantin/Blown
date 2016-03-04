@@ -29,7 +29,6 @@ public class Store {
         try {
             Scanner out = new Scanner(file);
             String[] car;
-            out.nextLine();
             while (out.hasNextLine()){
                 car=out.nextLine().split(";");
                 Cars.add(new Car(car[0],car[1],(Double.parseDouble(car[2])), (Double.parseDouble(car[3])),
