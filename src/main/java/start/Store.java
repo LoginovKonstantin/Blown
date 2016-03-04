@@ -23,26 +23,6 @@ public class Store {
 
     private static ArrayList<Car> Cars = new ArrayList<Car>();
 
-    public static ArrayList<Car> parseCars(){
-        File file = new File("./src/main/resources/files/store");
-        try {
-            Scanner out = new Scanner(file);
-            String[] car;
-            while (out.hasNextLine()){
-                car=out.nextLine().split(";");
-                Cars.add(new Car(car[0],car[1],(Double.parseDouble(car[2])),
-                        (Double.parseDouble(car[4])),(Double.parseDouble(car[5])),(Double.parseDouble(car[6])),
-                        (Boolean.parseBoolean(car[7])),(Boolean.parseBoolean(car[8]))));
-            }
-            out.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("Ошибка при чтении файла" + e);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return Cars;
-    }
-
     public void showScene() {
         try {
             rootStore = FXMLLoader.load(getClass().getResource("/fxml/store.fxml"));
@@ -73,5 +53,26 @@ public class Store {
                 }
             }
         });
+    }
+
+    //считывание из файла всех машин + создание объектов
+    public static ArrayList<Car> parseCars(){
+        File file = new File("./src/main/resources/files/store");
+        try {
+            Scanner out = new Scanner(file);
+            String[] car;
+            while (out.hasNextLine()){
+                car=out.nextLine().split(";");
+                Cars.add(new Car(car[0],car[1],(Double.parseDouble(car[2])),
+                        (Double.parseDouble(car[4])),(Double.parseDouble(car[5])),(Double.parseDouble(car[6])),
+                        (Boolean.parseBoolean(car[7])),(Boolean.parseBoolean(car[8]))));
+            }
+            out.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Файл не найден" + e);
+        } catch (IOException e) {
+            System.out.println("Ошибка при чтении файла" + e);
+        }
+        return Cars;
     }
 }

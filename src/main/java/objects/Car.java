@@ -7,20 +7,18 @@ import javafx.scene.image.Image;
  */
 public class Car {
     private String name;
-    private Image imgSide, imgAbove;
-    private double maxSpeed, minSpeed, price, width, height;
-    private boolean isBuy, isSelected;;
+    private String imgSide, imgAbove;
+    private double maxSpeed, price, width, height;
+    private boolean isBuy, isSelected;
     private int id;
-    private String img;
     private static int counter = 0;
 
-    public Car(String name, String img, double maxSpeed,
-               double width, double height, double price, boolean isBuy, boolean isSelected){
-
+    public Car(String name, String imgSide, String imgAbove, double maxSpeed,
+               double width, double height, double price, boolean isBuy, boolean isSelected) {
         id = counter++;
         this.name = name;
-//        this.imgProfile = img;
-        this.img=img;
+        this.imgSide = imgSide;
+        this.imgAbove = imgAbove;
         this.maxSpeed = maxSpeed;
         this.price = price;
         this.width = width;
@@ -29,37 +27,35 @@ public class Car {
         this.isSelected = isSelected;
     }
 
-    public String getName(){
+    public String getName() {
         return this.name;
     }
 
-    public String getImg(){ return this.img; }
+    public String getImgSide() {return this.imgSide;}
 
-//    public Image getImg(){
-//        return this.imgProfile;
-//    }
+    public String getImgAbove() {return this.imgAbove;}
 
-    public double getMaxSpeed(){
+    public double getMaxSpeed() {
         return this.maxSpeed;
     }
 
-    public double getWidth(){
+    public double getWidth() {
         return this.width;
     }
 
-    public double getHeight(){
+    public double getHeight() {
         return this.height;
     }
 
-    public double getPrice(){
+    public double getPrice() {
         return this.price;
     }
 
-    public boolean getBuy(){
+    public boolean getBuy() {
         return this.isBuy;
     }
 
-    public boolean getSelected(){
+    public boolean getSelected() {
         return this.isSelected;
     }
 }
