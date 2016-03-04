@@ -24,6 +24,7 @@ public class Store {
     public static ArrayList<Car> Cars = new ArrayList<Car>();
 
     public void showScene() {
+
         File file = new File("./src/main/resources/files/store");
         try {
             Scanner out = new Scanner(file);
@@ -43,12 +44,6 @@ public class Store {
             e.printStackTrace();
         }
 
-
-
-
-        //
-        //  Cars.add(new Car("SABRE", "./resources/images/sabre.png", 5, 130, 3000, 76, 159, false, false));
-//        Cars.add(new Car("BANHEE", "./resources/images/banhee.png", 10, 180, 6000, 77, 174, false, false));
         try {
             rootStore = FXMLLoader.load(getClass().getResource("/fxml/store.fxml"));
 
