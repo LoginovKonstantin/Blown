@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StoreController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="296.0" prefWidth="404.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StoreController">
     <children>
-        <Label layoutX="500.0" layoutY="440.0" text="" textFill="#01bbd2" />
-        <Label fx:id="speed" layoutX="710.0" layoutY="440.0" text="" textFill="#01bbd2" />
-        <Label layoutX="500.0" layoutY="480.0" text="MAX DISTANCE:" textFill="#01bbd2" />
-        <Label fx:id="distance" layoutX="710.0" layoutY="480.0" text="" textFill="#01bbd2" />
-        <Label layoutX="500.0" layoutY="520.0" text="MAX MONEY:" textFill="#01bbd2" />
-        <Label fx:id="money" layoutX="710.0" layoutY="520.0" text="" textFill="#01bbd2" />
+        <Label layoutX="10.0" layoutY="10.0" text="MONEY " textFill="#FF0000" />
+        <Label fx:id="dollars" layoutX="93.0" layoutY="10.0" textFill="RED" />
+        <ImageView fx:id="placeCars" fitHeight="150.0" fitWidth="200.0" layoutX="38.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true" />
     </children>
-</BorderPane>
+</Pane>

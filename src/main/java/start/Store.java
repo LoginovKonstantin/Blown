@@ -20,7 +20,7 @@ public class Store {
     private static Scene sceneStore;
     private static Parent rootStore;
 
-    private static int countCars = 0;
+    public static int countCars = 0;
     private static double money = 0;
 
     private static ArrayList<Car> Cars = new ArrayList<Car>();
@@ -48,6 +48,9 @@ public class Store {
 
         sceneStore.setOnKeyPressed(new EventHandler<KeyEvent>() {
             public void handle(KeyEvent event) {
+                if (event.getCode()==KeyCode.LEFT){
+                  //  StoreController.changeCar();
+                }
                 if (event.getCode() == KeyCode.ESCAPE) {
                     Parent root = null;
                     try {
