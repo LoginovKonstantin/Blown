@@ -22,6 +22,7 @@ public class Store {
 
     private static int countCars=0;
     private static double money=0;
+
     private static ArrayList<Car> Cars = new ArrayList<Car>();
 
     public void showScene() {
@@ -33,6 +34,7 @@ public class Store {
 //        money-=1000;
 //        rewriteMoney();
 //        System.out.println(getMoney());
+//        System.out.println(getCar().getName());
         try {
             rootStore = FXMLLoader.load(getClass().getResource("/fxml/store.fxml"));
         } catch (IOException e) {
@@ -92,7 +94,7 @@ public class Store {
             File f = new File("./src/main/resources/files/store");
             try {
                 PrintWriter writer = new PrintWriter(f);
-                while (i!=countCars){
+                while (i!=Cars.size()){
                     car=Cars.get(i);
                     writer.write(car.getName() + ';' + car.getImgSide()+
                             ';'+car.getImgAbove()+';'+car.getMaxSpeed()+';'+car.getWidth()+
@@ -135,6 +137,34 @@ public class Store {
         } catch (FileNotFoundException e) {
             System.out.println("проблемы при записи в файл" + e);
         }
+    }
+
+    //получение текуще-выбранной тачки!
+    public static Car getCar(){
+        int i=0;
+        String[] car;
+        Car outCar;
+        File file = new File("./src/main/resources/files/store");
+        try {
+            Scanner out = new Scanner(file);
+            while (out.hasNextLine()){
+                car=out.nextLine().split(";");
+                if ((Boolean.parseBoolean(car[7])==true) && (Boolean.parseBoolean(car[7])==true)){
+                    outCar=new Car(car[0],car[1],car[2],(Double.parseDouble(car[3])),
+                            (Double.parseDouble(car[4])),(Double.parseDouble(car[5])),(Double.parseDouble(car[6])),
+                            (Boolean.parseBoolean(car[7])),(Boolean.parseBoolean(car[8])));
+                    return outCar;
+                }
+            }
+            out.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Файл не найден" + e);
+        } catch (IOException e) {
+            System.out.println("Ошибка при чтении файла" + e);
+        }
+        return (new Car("copeuka","/images/carCopeukaSide.png","/images/carCopeukaAbove.png",(Double.parseDouble("100.0"))
+                ,(Double.parseDouble("90.0")),(Double.parseDouble("190.0"))
+                ,(Double.parseDouble("50000.0")),(Boolean.parseBoolean("true")),(Boolean.parseBoolean("true"))));
     }
 
 
