@@ -93,6 +93,7 @@ public class NewGame{
         //обработчик событий для клавишь клавиатуры в игре
         sceneNewGame.setOnKeyPressed(new EventHandler<KeyEvent>() {
             public void handle(KeyEvent event) {
+                Node currentNode = root.getChildren().get(3);
                 if(event.getCode()== KeyCode.ESCAPE){
                     Parent root = null;
                     try {
@@ -107,8 +108,8 @@ public class NewGame{
                     timeline.stop();
 
                 }else{
-                    Node currentNode = root.getChildren().get(3);
                     if(event.getCode() == controll[0] && event.getCode() == controll[1]){
+
 
                     }
                     if(event.getCode() == controll[0] && event.getCode() == controll[3]){
