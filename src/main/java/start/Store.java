@@ -55,7 +55,7 @@ public class Store {
         });
     }
 
-    //считывание из файла всех машин + создание объектов
+//    считывание из файла всех машин + создание объектов
 //    public static ArrayList<Car> parseCars(){
 //        File file = new File("./src/main/resources/files/store");
 //        try {
@@ -63,7 +63,7 @@ public class Store {
 //            String[] car;
 //            while (out.hasNextLine()){
 //                car=out.nextLine().split(";");
-//                Cars.add(new Car(car[0],car[1],(Double.parseDouble(car[2])),
+//                Cars.add(new Car(car[0],car[1],car[2],(Double.parseDouble(car[3])),
 //                        (Double.parseDouble(car[4])),(Double.parseDouble(car[5])),(Double.parseDouble(car[6])),
 //                        (Boolean.parseBoolean(car[7])),(Boolean.parseBoolean(car[8]))));
 //            }

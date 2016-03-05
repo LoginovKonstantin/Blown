@@ -1,6 +1,9 @@
-copeuka;/images/carCopeukaSide.png;/images/carCopeukaAbove.png;100;90;190;50000;false;false;
+copeuka;/images/carCopeukaSide.png;/images/carCopeukaAbove.png;100;90;190;50000;true;true;
 volga;/images/carVolgaSide.png;/images/carVolgaAbove.png;150;90;195;70000;false;false;
+priora;/images/carPrioraSide.png;/images/carPrioraAbove.png;180;93;189;100000;false;false;
 chevrolet;/images/carChevroletSide.png;/images/carChevroletAbove.png;180;95;195;100000;false;false;
-bmw;/images/carBmwSide.png;/images/carBmwAbove.png;200;90;190;200000;false;false;
+nissan;/images/carNissanSide.png;/images/carNissanAbove.png;200;93;190;120000;false;false;
+bmw;/images/carBmwSide.png;/images/carBmwAbove.png;210;90;190;200000;false;false;
 corvet;/images/carCorvetSide.png;/images/carCorvetAbove.png;230;90;190;250000;false;false;
+lamborgini;/images/carLamborginiSide.png;/images/carLamborginiAbove.png;250;93;186;290000;false;false;
 ferrari;/images/carFerrariSide.png;/images/carFerrariAbove.png;250;90;190;300000;false;false;
