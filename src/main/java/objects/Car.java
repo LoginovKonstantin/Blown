@@ -58,4 +58,9 @@ public class Car {
     public boolean getSelected() {
         return this.isSelected;
     }
+
+    public void setBuy(boolean isBuy) { this.isBuy=isBuy; }
+
+    public void setSelected(boolean isSelected) { this.isSelected=isSelected; }
+
 }
