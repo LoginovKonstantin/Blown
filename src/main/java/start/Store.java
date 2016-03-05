@@ -20,8 +20,8 @@ public class Store {
     private static Scene sceneStore;
     private static Parent rootStore;
 
-    private static int countCars=0;
-    private static double money=0;
+    private static int countCars = 0;
+    private static double money = 0;
 
     private static ArrayList<Car> Cars = new ArrayList<Car>();
 
@@ -64,19 +64,19 @@ public class Store {
         });
     }
 
-//  считывание из файла всех машин + создание объектов
-    public static ArrayList<Car> parseCars(){
-        countCars=0;
+    //  считывание из файла всех машин + создание объектов
+    public static ArrayList<Car> parseCars() {
+        countCars = 0;
         File file = new File("./src/main/resources/files/store");
         try {
             Scanner out = new Scanner(file);
             String[] car;
-            while (out.hasNextLine()){
+            while (out.hasNextLine()) {
                 countCars++;
-                car=out.nextLine().split(";");
-                Cars.add(new Car(car[0],car[1],car[2],(Double.parseDouble(car[3])),
-                        (Double.parseDouble(car[4])),(Double.parseDouble(car[5])),(Double.parseDouble(car[6])),
-                        (Boolean.parseBoolean(car[7])),(Boolean.parseBoolean(car[8]))));
+                car = out.nextLine().split(";");
+                Cars.add(new Car(car[0], car[1], car[2], (Double.parseDouble(car[3])),
+                        (Double.parseDouble(car[4])), (Double.parseDouble(car[5])), (Double.parseDouble(car[6])),
+                        (Boolean.parseBoolean(car[7])), (Boolean.parseBoolean(car[8]))));
             }
             out.close();
         } catch (FileNotFoundException e) {
@@ -87,36 +87,36 @@ public class Store {
         return Cars;
     }
 
-//      перезапись файла Store !
-        public static void rewriteStore(){
-            int i=0;
-            Car car;
-            File f = new File("./src/main/resources/files/store");
-            try {
-                PrintWriter writer = new PrintWriter(f);
-                while (i!=Cars.size()){
-                    car=Cars.get(i);
-                    writer.write(car.getName() + ';' + car.getImgSide()+
-                            ';'+car.getImgAbove()+';'+car.getMaxSpeed()+';'+car.getWidth()+
-                            ';'+car.getHeight()+';'+car.getPrice()+';'+car.getBuy()+
-                            ';'+car.getSelected()+';'+'\n');
-                    i++;
-                }
-                writer.close();
-            } catch (FileNotFoundException e) {
-                System.out.println("проблемы при записи в файл" + e);
-            } catch (IOException e) {
-                e.printStackTrace();
+    //      перезапись файла Store !
+    public static void rewriteStore() {
+        int i = 0;
+        Car car;
+        File f = new File("./src/main/resources/files/store");
+        try {
+            PrintWriter writer = new PrintWriter(f);
+            while (i != Cars.size()) {
+                car = Cars.get(i);
+                writer.write(car.getName() + ';' + car.getImgSide() +
+                        ';' + car.getImgAbove() + ';' + car.getMaxSpeed() + ';' + car.getWidth() +
+                        ';' + car.getHeight() + ';' + car.getPrice() + ';' + car.getBuy() +
+                        ';' + car.getSelected() + ';' + '\n');
+                i++;
             }
+            writer.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("проблемы при записи в файл" + e);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+    }
 
     //метод достает из файла бабки!
-    public static double getMoney(){
+    public static double getMoney() {
         File file = new File("./src/main/resources/files/money");
         try {
             Scanner out = new Scanner(file);
-            while (out.hasNextLine()){
-                money=Double.parseDouble(out.nextLine());
+            while (out.hasNextLine()) {
+                money = Double.parseDouble(out.nextLine());
             }
             out.close();
         } catch (FileNotFoundException e) {
@@ -128,7 +128,7 @@ public class Store {
     }
 
     //перезапись денег в файл
-    public void rewriteMoney(){
+    public void rewriteMoney() {
         try {
             File f = new File("./src/main/resources/files/money");
             PrintWriter writer = new PrintWriter(f);
@@ -139,20 +139,25 @@ public class Store {
         }
     }
 
+    //прибавка к деньгам после игры newgame
+    public void setMoney(double money){
+        this.money=getMoney()+money;
+        rewriteMoney();
+    }
+
     //получение текуще-выбранной тачки!
-    public static Car getCar(){
-        int i=0;
+    public static Car getCar() {
         String[] car;
         Car outCar;
         File file = new File("./src/main/resources/files/store");
         try {
             Scanner out = new Scanner(file);
-            while (out.hasNextLine()){
-                car=out.nextLine().split(";");
-                if ((Boolean.parseBoolean(car[7])==true) && (Boolean.parseBoolean(car[7])==true)){
-                    outCar=new Car(car[0],car[1],car[2],(Double.parseDouble(car[3])),
-                            (Double.parseDouble(car[4])),(Double.parseDouble(car[5])),(Double.parseDouble(car[6])),
-                            (Boolean.parseBoolean(car[7])),(Boolean.parseBoolean(car[8])));
+            while (out.hasNextLine()) {
+                car = out.nextLine().split(";");
+                if ((Boolean.parseBoolean(car[7]) == true) && (Boolean.parseBoolean(car[8]) == true)) {
+                    outCar = new Car(car[0], car[1], car[2], (Double.parseDouble(car[3])),
+                            (Double.parseDouble(car[4])), (Double.parseDouble(car[5])), (Double.parseDouble(car[6])),
+                            (Boolean.parseBoolean(car[7])), (Boolean.parseBoolean(car[8])));
                     return outCar;
                 }
             }
@@ -162,9 +167,9 @@ public class Store {
         } catch (IOException e) {
             System.out.println("Ошибка при чтении файла" + e);
         }
-        return (new Car("copeuka","/images/carCopeukaSide.png","/images/carCopeukaAbove.png",(Double.parseDouble("100.0"))
-                ,(Double.parseDouble("90.0")),(Double.parseDouble("190.0"))
-                ,(Double.parseDouble("50000.0")),(Boolean.parseBoolean("true")),(Boolean.parseBoolean("true"))));
+        return (new Car("copeuka", "/images/carCopeukaSide.png", "/images/carCopeukaAbove.png", (Double.parseDouble("100.0"))
+                , (Double.parseDouble("90.0")), (Double.parseDouble("190.0"))
+                , (Double.parseDouble("50000.0")), (Boolean.parseBoolean("true")), (Boolean.parseBoolean("true"))));
     }
 
 
