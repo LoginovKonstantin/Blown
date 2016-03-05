@@ -48,13 +48,16 @@ public class NewGame{
     private Car currentCar;
 
     double offsetY = 1;//смещение по Y
-    double offsetX = 7;
-    double speedCar = 2;
+    double offsetCarY = 5;
+    double offsetCarX = 7;
+    double speedCar = 5;
+    double maxSpeedCar;
     double money;
 
     public void showScene(){
         money = 0;
         currentCar = Store.getCar();
+        maxSpeedCar = currentCar.getMaxSpeed();
 
         labelMoney = new Label("MONEY");
         labelMoney.setFont(Font.font("AVENTURA"));
@@ -105,7 +108,7 @@ public class NewGame{
                 }else{
                     //необходимо настраивать + нужен класс CAR доработанный
                     if(event.getCode() == controll[0]) {
-                        if (speedCar > 1) {
+                        if (speedCar > maxSpeedCar) {
                             resetTimer(timeline, speedCar);
                             speedCar -= 0.1;
                         }
@@ -118,15 +121,14 @@ public class NewGame{
                     }
                     if(event.getCode() == controll[1]) {
                         if (root.getChildren().get(3).getLayoutX() > 445) {
-                            root.getChildren().get(3).setLayoutX(root.getChildren().get(3).getLayoutX() - offsetX);
+                            root.getChildren().get(3).setLayoutX(root.getChildren().get(3).getLayoutX() - offsetCarX);
                         }
                     }
                     if(event.getCode() == controll[3]){
                         if((root.getChildren().get(3).getLayoutX()) < 750){
-                            root.getChildren().get(3).setLayoutX(root.getChildren().get(3).getLayoutX() + offsetX);
+                            root.getChildren().get(3).setLayoutX(root.getChildren().get(3).getLayoutX() + offsetCarX);
                         }
                     }
-
                 }
 
             }
@@ -171,7 +173,7 @@ public class NewGame{
 
     //получаем вид управления, который выбран в игре в setting
     public void identifyControll(){
-        if(SettingController.controll == "up" || SettingController.controll == ""){
+        if(SettingController.controll.equals("up") || SettingController.controll.equals("")){
             controll[0] = KeyCode.W; controll[1] = KeyCode.A;
             controll[2] = KeyCode.S; controll[3] = KeyCode.D;
         }else{
