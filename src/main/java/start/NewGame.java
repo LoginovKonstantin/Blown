@@ -29,6 +29,7 @@ public class NewGame{
     final static Image BACKGROUND_IMAGE1 = new Image("/images/road1.jpg");
     final static Image BACKGROUND_IMAGE2 = new Image("/images/road2.jpg");
     final static Image BACKGROUND_IMAGE3 = new Image("/images/road3.jpg");
+    final static Image CAR = new Image("/images/carCorvetAbove.png");
 
     private ImageView background1;
     private ImageView background2;
@@ -51,10 +52,14 @@ public class NewGame{
         background2 = new ImageView(BACKGROUND_IMAGE2);
         background3 = new ImageView(BACKGROUND_IMAGE3);
 
+        ImageView car = new ImageView(CAR);
+
         root = new Group();
         root.getChildren().add(0, background1); root.getChildren().get(0).setLayoutY(0);
         root.getChildren().add(1, background2);
         root.getChildren().add(2, background3);
+        root.getChildren().add(3, car);root.getChildren().get(3).setLayoutY(300);
+        root.getChildren().get(3).setLayoutX(430);
 
         sceneNewGame = new Scene(root, HEIGHT, WIDTH);
         MainApp.stage.setTitle("BLOWN");
