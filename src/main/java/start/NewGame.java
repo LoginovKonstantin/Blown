@@ -8,6 +8,7 @@ import javafx.animation.Timeline;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -106,27 +107,45 @@ public class NewGame{
                     timeline.stop();
 
                 }else{
-                    //необходимо настраивать + нужен класс CAR доработанный
-                    if(event.getCode() == controll[0]) {
+                    Node currentNode = root.getChildren().get(3);
+                    if(event.getCode() == controll[0] && event.getCode() == controll[1]){
+
+                    }
+                    if(event.getCode() == controll[0] && event.getCode() == controll[3]){
+
+                    }
+                    if(event.getCode() == controll[2] && event.getCode() == controll[1]){
+
+                    }
+                    if(event.getCode() == controll[2] && event.getCode() == controll[3]){
+
+                    }
+                    if(event.getCode() == controll[0]){
                         if (speedCar > maxSpeedCar) {
                             resetTimer(timeline, speedCar);
                             speedCar -= 0.1;
                         }
-                    }
-                    if(event.getCode() == controll[2]){
-                        if(speedCar < 5){
-                            resetTimer(timeline, speedCar);
-                            speedCar += 0.1;
+                        if(currentNode.getLayoutY() > 350){
+                            currentNode.setLayoutY(currentNode.getLayoutY() - offsetCarY);
                         }
                     }
-                    if(event.getCode() == controll[1]) {
-                        if (root.getChildren().get(3).getLayoutX() > 445) {
-                            root.getChildren().get(3).setLayoutX(root.getChildren().get(3).getLayoutX() - offsetCarX);
+                    if(event.getCode() == controll[2]){
+                        if (speedCar > maxSpeedCar) {
+                            resetTimer(timeline, speedCar);
+                            speedCar -= 0.1;
+                        }
+                        if(currentNode.getLayoutY() < 480){
+                            currentNode.setLayoutY(currentNode.getLayoutY() + offsetCarY);
+                        }
+                    }
+                    if(event.getCode() == controll[1]){
+                        if (currentNode.getLayoutX() > 445) {
+                            currentNode.setLayoutX(currentNode.getLayoutX() - offsetCarX);
                         }
                     }
                     if(event.getCode() == controll[3]){
-                        if((root.getChildren().get(3).getLayoutX()) < 750){
-                            root.getChildren().get(3).setLayoutX(root.getChildren().get(3).getLayoutX() + offsetCarX);
+                        if((currentNode.getLayoutX()) < 750){
+                            currentNode.setLayoutX(currentNode.getLayoutX() + offsetCarX);
                         }
                     }
                 }
