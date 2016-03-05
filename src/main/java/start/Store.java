@@ -19,14 +19,20 @@ import java.util.Scanner;
 public class Store {
     private static Scene sceneStore;
     private static Parent rootStore;
+
     private static int countCars=0;
+    private static double money=0;
     private static ArrayList<Car> Cars = new ArrayList<Car>();
 
     public void showScene() {
-        //тест методов.. вызов parseCars(); перед реврайтом обязательно, ибо листэрей будет не заполнен
+        //тест методов.. вызов parseCars(); перед реврайтом обязательно, ибо листэрей будет не заполнен.
 //        parseCars();
 //        Cars.get(0).setBuy(true);
-//        rewriteFile();
+//        rewriteStore()
+//        money=getMoney();
+//        money-=1000;
+//        rewriteMoney();
+//        System.out.println(getMoney());
         try {
             rootStore = FXMLLoader.load(getClass().getResource("/fxml/store.fxml"));
         } catch (IOException e) {
@@ -48,7 +54,6 @@ public class Store {
                         e.printStackTrace();
                     }
                     Scene scene = new Scene(root, 1290, 680);
-
                     scene.getStylesheets().add("/styles/main.css");
                     MainApp.stage.setTitle("BLOWN");
                     MainApp.stage.setScene(scene);
@@ -57,7 +62,7 @@ public class Store {
         });
     }
 
-//    считывание из файла всех машин + создание объектов
+//  считывание из файла всех машин + создание объектов
     public static ArrayList<Car> parseCars(){
         countCars=0;
         File file = new File("./src/main/resources/files/store");
@@ -81,7 +86,7 @@ public class Store {
     }
 
 //      перезапись файла Store !
-        public static void rewriteFile(){
+        public static void rewriteStore(){
             int i=0;
             Car car;
             File f = new File("./src/main/resources/files/store");
@@ -102,5 +107,35 @@ public class Store {
                 e.printStackTrace();
             }
         }
+
+    //метод достает из файла бабки!
+    public static double getMoney(){
+        File file = new File("./src/main/resources/files/money");
+        try {
+            Scanner out = new Scanner(file);
+            while (out.hasNextLine()){
+                money=Double.parseDouble(out.nextLine());
+            }
+            out.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Файл не найден" + e);
+        } catch (IOException e) {
+            System.out.println("Ошибка при чтении файла" + e);
+        }
+        return money;
+    }
+
+    //перезапись денег в файл
+    public void rewriteMoney(){
+        try {
+            File f = new File("./src/main/resources/files/money");
+            PrintWriter writer = new PrintWriter(f);
+            writer.write(Double.toString(money));
+            writer.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("проблемы при записи в файл" + e);
+        }
+    }
+
 
 }
