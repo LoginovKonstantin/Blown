@@ -48,6 +48,7 @@ public class NewGame{
     private Car currentCar;
 
     double offsetY = 1;//смещение по Y
+    double offsetX = 7;
     double speedCar = 2;
     double money;
 
@@ -72,8 +73,9 @@ public class NewGame{
         root.getChildren().add(1, background2);
         root.getChildren().add(2, background3);
 
-        root.getChildren().add(3, car);root.getChildren().get(3).setLayoutY(300);
-        root.getChildren().get(3).setLayoutX(430);
+        root.getChildren().add(3, car);
+        root.getChildren().get(3).setLayoutY(470);
+        root.getChildren().get(3).setLayoutX(540);
 
         root.getChildren().add(4, labelMoney);
         root.getChildren().get(4).setLayoutX(10);
@@ -102,19 +104,29 @@ public class NewGame{
 
                 }else{
                     //необходимо настраивать + нужен класс CAR доработанный
-                    if(event.getCode() == controll[0]){
-                        if(speedCar > 1){
+                    if(event.getCode() == controll[0]) {
+                        if (speedCar > 1) {
                             resetTimer(timeline, speedCar);
                             speedCar -= 0.1;
                         }
-                    }else{
-                        if(event.getCode() == controll[2]){
-                            if(speedCar < 5){
-                                resetTimer(timeline, speedCar);
-                                speedCar += 0.1;
-                            }
+                    }
+                    if(event.getCode() == controll[2]){
+                        if(speedCar < 5){
+                            resetTimer(timeline, speedCar);
+                            speedCar += 0.1;
                         }
                     }
+                    if(event.getCode() == controll[1]) {
+                        if (root.getChildren().get(3).getLayoutX() > 445) {
+                            root.getChildren().get(3).setLayoutX(root.getChildren().get(3).getLayoutX() - offsetX);
+                        }
+                    }
+                    if(event.getCode() == controll[3]){
+                        if((root.getChildren().get(3).getLayoutX()) < 750){
+                            root.getChildren().get(3).setLayoutX(root.getChildren().get(3).getLayoutX() + offsetX);
+                        }
+                    }
+
                 }
 
             }
