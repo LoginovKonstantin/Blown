@@ -10,11 +10,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.util.Duration;
+import objects.Car;
 
 import java.io.IOException;
 
@@ -40,11 +44,20 @@ public class NewGame{
     private Timeline timeline;
     private KeyFrame keyFrame;
     private KeyCode[] controll = new KeyCode[4];//массив в котором коды клавиш, которые используются для управления
+    private Label labelMoney;
+    private Car currentCar;
 
     double offsetY = 1;//смещение по Y
-    double speedCar = 5;//скорость машины, необходимо получить из файла
+    double speedCar = 2;
+    double money;
 
     public void showScene(){
+        money = 0;
+        currentCar = Store.getCar();
+
+        labelMoney = new Label("MONEY");
+        labelMoney.setFont(Font.font("AVENTURA"));
+        labelMoney.setTextFill(Color.RED);
 
         identifyControll();//определяем управление
 
@@ -52,14 +65,20 @@ public class NewGame{
         background2 = new ImageView(BACKGROUND_IMAGE2);
         background3 = new ImageView(BACKGROUND_IMAGE3);
 
-        ImageView car = new ImageView(CAR);
+        ImageView car = new ImageView(new Image(currentCar.getImgAbove()));
 
         root = new Group();
         root.getChildren().add(0, background1); root.getChildren().get(0).setLayoutY(0);
         root.getChildren().add(1, background2);
         root.getChildren().add(2, background3);
+
         root.getChildren().add(3, car);root.getChildren().get(3).setLayoutY(300);
         root.getChildren().get(3).setLayoutX(430);
+
+        root.getChildren().add(4, labelMoney);
+        root.getChildren().get(4).setLayoutX(10);
+        root.getChildren().get(4).setLayoutY(10);
+
 
         sceneNewGame = new Scene(root, HEIGHT, WIDTH);
         MainApp.stage.setTitle("BLOWN");
@@ -86,14 +105,13 @@ public class NewGame{
                     if(event.getCode() == controll[0]){
                         if(speedCar > 1){
                             resetTimer(timeline, speedCar);
-                            speedCar -= 0.05;
-
+                            speedCar -= 0.1;
                         }
                     }else{
                         if(event.getCode() == controll[2]){
                             if(speedCar < 5){
                                 resetTimer(timeline, speedCar);
-                                speedCar += 0.05;
+                                speedCar += 0.1;
                             }
                         }
                     }
@@ -136,6 +154,7 @@ public class NewGame{
         root.getChildren().get(1).setLayoutY((root.getChildren().get(1).getLayoutY() + offsetY));
         root.getChildren().get(2).setLayoutY((root.getChildren().get(2).getLayoutY() + offsetY));
 
+        labelMoney.setText("MONEY " + (money));
     }
 
     //получаем вид управления, который выбран в игре в setting
@@ -148,7 +167,6 @@ public class NewGame{
             controll[2] = KeyCode.DOWN; controll[3] = KeyCode.RIGHT;
         }
     }
-
 
 
 }
