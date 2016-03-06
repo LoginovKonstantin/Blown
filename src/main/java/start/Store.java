@@ -26,15 +26,6 @@ public class Store {
     private static ArrayList<Car> Cars = new ArrayList<Car>();
 
     public void showScene() {
-        //тест методов.. вызов parseCars(); перед реврайтом обязательно, ибо листэрей будет не заполнен.
-//        parseCars();
-//        Cars.get(0).setBuy(true);
-//        rewriteStore()
-//        money=getMoney();
-//        money-=1000;
-//        rewriteMoney();
-//        System.out.println(getMoney());
-//        System.out.println(getCar().getName());
         try {
             rootStore = FXMLLoader.load(getClass().getResource("/fxml/store.fxml"));
         } catch (IOException e) {
@@ -49,7 +40,7 @@ public class Store {
         sceneStore.setOnKeyPressed(new EventHandler<KeyEvent>() {
             public void handle(KeyEvent event) {
                 if (event.getCode()==KeyCode.LEFT){
-                  //  StoreController.changeCar();
+
                 }
                 if (event.getCode() == KeyCode.ESCAPE) {
                     Parent root = null;
