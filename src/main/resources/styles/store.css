@@ -5,6 +5,5 @@
 }
 .root {
      -fx-background-image: url("/images/store.jpg");
-     -fx-font-weight: bold;
-     -fx-font-size:15pt;
+     -fx-font-family:AVENTURA;
 }
