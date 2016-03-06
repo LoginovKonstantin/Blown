@@ -55,6 +55,8 @@ public class NewGame{
     double maxSpeedCar;
     double money;
 
+    boolean up = false, left = false, right = false, down = false;
+
     public void showScene(){
         money = 0;
         currentCar = Store.getCar();
@@ -90,7 +92,25 @@ public class NewGame{
         MainApp.stage.setTitle("BLOWN");
         MainApp.stage.setScene(sceneNewGame);
 
-        //обработчик событий для клавишь клавиатуры в игре
+
+        sceneNewGame.setOnKeyReleased(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if(event.getCode() == controll[0]){
+                    up = false;
+                }
+                if(event.getCode() == controll[1]){
+                    left = false;
+                }
+                if(event.getCode() == controll[2]){
+                    down = false;
+                }
+                if(event.getCode() == controll[3]){
+                    right = false;
+                }
+            }
+        });
+
         sceneNewGame.setOnKeyPressed(new EventHandler<KeyEvent>() {
             public void handle(KeyEvent event) {
                 Node currentNode = root.getChildren().get(3);
@@ -108,45 +128,37 @@ public class NewGame{
                     timeline.stop();
 
                 }else{
-                    if(event.getCode() == controll[0] && event.getCode() == controll[1]){
+                    if(event.getCode() == controll[0]) up = true;
+                    if(event.getCode() == controll[1]) left = true;
+                    if(event.getCode() == controll[2]) down = true;
+                    if(event.getCode() == controll[3]) right = true;
 
-
+                    if(left){
+                        if (currentNode.getLayoutX() > 445) {
+                            currentNode.setLayoutX(currentNode.getLayoutX() - offsetCarX);
+                        }
                     }
-                    if(event.getCode() == controll[0] && event.getCode() == controll[3]){
-
+                    if(right){
+                        if((currentNode.getLayoutX()) < 750){
+                            currentNode.setLayoutX(currentNode.getLayoutX() + offsetCarX);
+                        }
                     }
-                    if(event.getCode() == controll[2] && event.getCode() == controll[1]){
-
-                    }
-                    if(event.getCode() == controll[2] && event.getCode() == controll[3]){
-
-                    }
-                    if(event.getCode() == controll[0]){
+                    if(up){
                         if (speedCar > maxSpeedCar) {
                             resetTimer(timeline, speedCar);
                             speedCar -= 0.1;
                         }
-                        if(currentNode.getLayoutY() > 350){
+                        if(currentNode.getLayoutY() > 320){
                             currentNode.setLayoutY(currentNode.getLayoutY() - offsetCarY);
                         }
                     }
-                    if(event.getCode() == controll[2]){
+                    if(down){
                         if (speedCar > maxSpeedCar) {
                             resetTimer(timeline, speedCar);
                             speedCar -= 0.1;
                         }
                         if(currentNode.getLayoutY() < 480){
                             currentNode.setLayoutY(currentNode.getLayoutY() + offsetCarY);
-                        }
-                    }
-                    if(event.getCode() == controll[1]){
-                        if (currentNode.getLayoutX() > 445) {
-                            currentNode.setLayoutX(currentNode.getLayoutX() - offsetCarX);
-                        }
-                    }
-                    if(event.getCode() == controll[3]){
-                        if((currentNode.getLayoutX()) < 750){
-                            currentNode.setLayoutX(currentNode.getLayoutX() + offsetCarX);
                         }
                     }
                 }
