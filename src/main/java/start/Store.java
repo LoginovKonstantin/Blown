@@ -131,7 +131,7 @@ public class Store {
     }
 
     //перезапись денег в файл
-    public void rewriteMoney() {
+    public static void rewriteMoney() {
         try {
             File f = new File("./src/main/resources/files/money");
             PrintWriter writer = new PrintWriter(f);
@@ -143,8 +143,8 @@ public class Store {
     }
 
     //прибавка к деньгам после игры newgame
-    public void setMoney(double money){
-        this.money=getMoney()+money;
+    public static void setMoney(double moneyAdd){
+        money = getMoney()+moneyAdd;
         rewriteMoney();
     }
 
