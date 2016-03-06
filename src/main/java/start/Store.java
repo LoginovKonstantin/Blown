@@ -3,10 +3,16 @@ package start;
 import controllers.StoreController;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
 import objects.Car;
 
 import java.io.*;
@@ -17,6 +23,24 @@ import java.util.Scanner;
  * Created by 4 on 02.03.2016.
  */
 public class Store {
+    final static int WIDTH = 1280;
+    final static int HEIGHT = 680;
+    final static Image BACKGROUND = new Image("/images/store.jpg");
+    private ImageView left;
+    private ImageView right;
+    private ImageView close;
+    private ImageView background;
+    private ImageView car;
+    private ImageView drive;
+    private Group root;
+    private Label lbMoney;
+    private Label outMoney;
+    private Label price;
+    private Label maxSpeed;
+    private Label nameCar;
+    private Label outPrice;
+    private int currentPositionCar;
+
     private static Scene sceneStore;
     private static Parent rootStore;
 
@@ -26,13 +50,90 @@ public class Store {
     private static ArrayList<Car> Cars = new ArrayList<Car>();
 
     public void showScene() {
+
+        root = new Group();
+        background = new ImageView(BACKGROUND);
+        left=new ImageView("images/left.png");
+        right=new ImageView("images/right.png");
+        close=new ImageView("images/close.png");
+        drive=new ImageView("images/drive.png");
+
+        lbMoney=new Label();
+        outMoney=new Label();
+        lbMoney.setText("MONEY");
+        lbMoney.setTextFill(Color.GOLD);
+        outMoney.setTextFill(Color.GOLD);
+        outMoney.setText(Double.toString(getMoney()));
+        price=new Label();
+        price.setText("PRICE CAR:");
+        price.setTextFill(Color.GOLD);
+        nameCar=new Label();
+        nameCar.setTextFill(Color.GOLD);
+        maxSpeed=new Label();
+        maxSpeed.setTextFill(Color.GOLD);
+        outPrice=new Label();
+        outPrice.setTextFill(Color.GOLD);
+        outPrice.setText(Double.toString(parseCars().get(currentPositionCar).getPrice()));
+
+        root.getChildren().add(0, background);
+        root.getChildren().get(0).setLayoutY(0);
+
+        root.getChildren().add(1,lbMoney);
+        root.getChildren().get(1).setLayoutY(10);
+        root.getChildren().get(1).setLayoutX(10);
+
+        root.getChildren().add(2,outMoney);
+        root.getChildren().get(2).setLayoutX(70);
+        root.getChildren().get(2).setLayoutY(10);
+
+        root.getChildren().add(3,left);
+        root.getChildren().get(3).setLayoutX(300);
+        root.getChildren().get(3).setLayoutY(450);
+
+        root.getChildren().add(4,right);
+        root.getChildren().get(4).setLayoutX(922);
+        root.getChildren().get(4).setLayoutY(450);
+
+
+        car=new ImageView(getCar().getImgSide());
+        root.getChildren().add(5,car);
+        root.getChildren().get(5).setLayoutX(560);
+        root.getChildren().get(5).setLayoutY(460);
+        parseCars();
+        checkCurrentCar();
+        nameCar.setText("NAME CAR: "+parseCars().get(currentPositionCar).getName());
+        maxSpeed.setText("SPEED: "+parseCars().get(currentPositionCar).getMaxSpeed()+" MPH/H");
+
+        root.getChildren().add(6,price);
+        root.getChildren().get(6).setLayoutY(400);
+        root.getChildren().get(6).setLayoutX(400);
+        root.getChildren().add(7,outPrice);
+        root.getChildren().get(7).setLayoutY(400);
+        root.getChildren().get(7).setLayoutX(480);
+
+        root.getChildren().add(8,nameCar);
+        root.getChildren().get(8).setLayoutY(400);
+        root.getChildren().get(8).setLayoutX(566);
+
+        root.getChildren().add(9,maxSpeed);
+        root.getChildren().get(9).setLayoutY(400);
+        root.getChildren().get(9).setLayoutX(750);
+
+        root.getChildren().add(10,new ImageView("images/clear.png"));
+        root.getChildren().get(10).setLayoutX(560);
+        root.getChildren().get(10).setLayoutY(460);
+
+        root.getChildren().add(11,new ImageView("images/drive.png"));
+        root.getChildren().get(11).setLayoutX(400);
+        root.getChildren().get(11).setLayoutY(430);
+
         try {
             rootStore = FXMLLoader.load(getClass().getResource("/fxml/store.fxml"));
         } catch (IOException e) {
             System.out.println("Ошибка подключения Store.fxml !!");
         }
 
-        sceneStore = new Scene(rootStore, 1290, 680);
+        sceneStore = new Scene(root, WIDTH,HEIGHT);
         sceneStore.getStylesheets().add("/styles/store.css");
         MainApp.stage.setTitle("BLOWN");
         MainApp.stage.setScene(sceneStore);
@@ -40,8 +141,55 @@ public class Store {
         sceneStore.setOnKeyPressed(new EventHandler<KeyEvent>() {
             public void handle(KeyEvent event) {
                 if (event.getCode()==KeyCode.LEFT){
+                    if (currentPositionCar>0){
+                        root.getChildren().set(4,(new ImageView("images/right.png")));
+                        root.getChildren().get(4).setLayoutX(922);
+                        root.getChildren().get(4).setLayoutY(450);;
 
+                        currentPositionCar--;
+                        car=new ImageView(parseCars().get(currentPositionCar).getImgSide());
+                        car.setLayoutY(460);
+                        car.setLayoutX(560);
+                        root.getChildren().set(5,car);
+
+                        outPrice.setText(Double.toString(parseCars().get(currentPositionCar).getPrice()));
+                        nameCar.setText("NAME CAR: "+parseCars().get(currentPositionCar).getName());
+                        maxSpeed.setText("SPEED: "+parseCars().get(currentPositionCar).getMaxSpeed()+" MPH/H");
+                    }
+                    if (currentPositionCar==0){
+                        root.getChildren().set(3,(new ImageView("images/clear.png")));
+                    }
+                    checkBuy();
+                    checkSelected();
                 }
+                if (event.getCode()==KeyCode.RIGHT){
+                    if (currentPositionCar<8){
+                        root.getChildren().set(3,(new ImageView("images/left.png")));
+                        root.getChildren().get(3).setLayoutX(300);
+                        root.getChildren().get(3).setLayoutY(450);
+
+                        currentPositionCar++;
+                        car=new ImageView(parseCars().get(currentPositionCar).getImgSide());
+                        car.setLayoutY(460);
+                        car.setLayoutX(560);
+                        root.getChildren().set(5,car);
+
+                        outPrice.setText(Double.toString(parseCars().get(currentPositionCar).getPrice()));
+                        nameCar.setText("NAME CAR: "+parseCars().get(currentPositionCar).getName());
+                        maxSpeed.setText("SPEED: "+parseCars().get(currentPositionCar).getMaxSpeed()+" MPH/H");
+                    }
+                    if (currentPositionCar==8) {
+                        root.getChildren().set(4,(new ImageView("images/clear.png")));
+                    }
+                    checkBuy();
+                    checkSelected();
+                }
+                if (event.getCode()==KeyCode.ENTER){
+//                    parseCars();
+//                    select(currentPositionCar);
+//                    rewriteStore();
+                }
+
                 if (event.getCode() == KeyCode.ESCAPE) {
                     Parent root = null;
                     try {
@@ -166,5 +314,50 @@ public class Store {
                 , (Double.parseDouble("50000.0")), (Boolean.parseBoolean("true")), (Boolean.parseBoolean("true"))));
     }
 
+    public void checkCurrentCar(){
+        for (int i=0;i<countCars;i++){
+            if (getCar().getName().equals(Cars.get(i).getName())){
+                currentPositionCar=i;
+            }
+        }
+        if (currentPositionCar==0){
+            root.getChildren().set(3,(new ImageView("images/clear.png")));
+        } else if (currentPositionCar==8){
+            root.getChildren().set(4,(new ImageView("images/clear.png")));
+        }
+    }
+
+    public void checkSelected(){
+        if ((parseCars().get(currentPositionCar).getSelected())){
+            root.getChildren().set(11,new ImageView("images/drive.png"));
+            root.getChildren().get(11).setLayoutX(400);
+            root.getChildren().get(11).setLayoutY(430);
+        } else {
+            root.getChildren().set(11,new ImageView("images/clear.png"));
+            root.getChildren().get(11).setLayoutX(400);
+            root.getChildren().get(11).setLayoutY(430);
+        }
+    }
+
+    public void checkBuy(){
+        if ((parseCars().get(currentPositionCar).getBuy())){
+            root.getChildren().set(10,new ImageView("images/clear.png"));
+            root.getChildren().get(10).setLayoutX(595);
+            root.getChildren().get(10).setLayoutY(455);
+        } else {
+            root.getChildren().set(10,new ImageView("images/close.png"));
+            root.getChildren().get(10).setLayoutX(595);
+            root.getChildren().get(10).setLayoutY(455);
+        }
+    }
+
+    public void select(int pos){
+        Cars.get(pos).setSelected(true);
+        for (int i=0;i<pos;i++){
+            if (i!=pos){
+                Cars.get(i).setSelected(false);
+            }
+        }
+    }
 
 }

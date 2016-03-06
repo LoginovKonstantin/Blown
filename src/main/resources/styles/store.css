@@ -4,6 +4,7 @@
     src: url('../fonts/AVENTURA.otf');
 }
 .root {
-     -fx-background-image: url("/images/store.jpg");
+     -fx-height:680px;
+     -fx-width:1280px;
      -fx-font-family:AVENTURA;
 }
