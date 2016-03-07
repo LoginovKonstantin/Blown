@@ -1,4 +1,4 @@
-KOPEIKA;/images/carCopeukaSide.png;/images/carCopeukaAbove.png;4.0;90.0;190.0;50000.0;true;false;
+KOPEIKA;/images/carCopeukaSide.png;/images/carCopeukaAbove.png;4.0;90.0;190.0;50000.0;false;false;
 VOLGA;/images/carVolgaSide.png;/images/carVolgaAbove.png;3.5;90.0;195.0;70000.0;false;false;
 PRIORA;/images/carPrioraSide.png;/images/carPrioraAbove.png;3.0;93.0;189.0;100000.0;false;false;
 CHEVROLET;/images/carChevroletSide.png;/images/carChevroletAbove.png;3.0;95.0;195.0;100000.0;false;false;

@@ -25,6 +25,7 @@ import java.util.Scanner;
 public class Store {
     final static int WIDTH = 1280;
     final static int HEIGHT = 680;
+
     final static Image BACKGROUND = new Image("/images/store.jpg");
     private ImageView left;
     private ImageView right;
@@ -32,13 +33,16 @@ public class Store {
     private ImageView background;
     private ImageView car;
     private ImageView drive;
+
     private Group root;
+
     private Label lbMoney;
     private Label outMoney;
     private Label price;
     private Label maxSpeed;
     private Label nameCar;
     private Label outPrice;
+
     private int currentPositionCar;
 
     private static Scene sceneStore;
@@ -50,8 +54,8 @@ public class Store {
     private static ArrayList<Car> Cars = new ArrayList<Car>();
 
     public void showScene() {
-
         root = new Group();
+
         background = new ImageView(BACKGROUND);
         left=new ImageView("/images/left.png");
         right=new ImageView("/images/right.png");
@@ -127,6 +131,7 @@ public class Store {
         root.getChildren().get(11).setLayoutX(400);
         root.getChildren().get(11).setLayoutY(430);
 
+
         try {
             rootStore = FXMLLoader.load(getClass().getResource("/fxml/store.fxml"));
         } catch (IOException e) {
@@ -151,7 +156,12 @@ public class Store {
                         car.setLayoutY(460);
                         car.setLayoutX(560);
                         root.getChildren().set(5,car);
-
+                        if ((parseCars().get(currentPositionCar).getPrice()>getMoney())
+                                && !(parseCars().get(currentPositionCar).getBuy())){
+                            outPrice.setTextFill(Color.RED);
+                        } else {
+                            outPrice.setTextFill(Color.GOLD);
+                        }
                         outPrice.setText(Double.toString(parseCars().get(currentPositionCar).getPrice()));
                         nameCar.setText("NAME CAR: "+parseCars().get(currentPositionCar).getName());
                         maxSpeed.setText("SPEED: "+parseCars().get(currentPositionCar).getMaxSpeed()+" MPH/H");
@@ -173,7 +183,12 @@ public class Store {
                         car.setLayoutY(460);
                         car.setLayoutX(560);
                         root.getChildren().set(5,car);
-
+                        if ((parseCars().get(currentPositionCar).getPrice()>getMoney())
+                                && !(parseCars().get(currentPositionCar).getBuy())){
+                            outPrice.setTextFill(Color.RED);
+                        } else {
+                            outPrice.setTextFill(Color.GOLD);
+                        }
                         outPrice.setText(Double.toString(parseCars().get(currentPositionCar).getPrice()));
                         nameCar.setText("NAME CAR: "+parseCars().get(currentPositionCar).getName());
                         maxSpeed.setText("SPEED: "+parseCars().get(currentPositionCar).getMaxSpeed()+" MPH/H");
@@ -185,9 +200,21 @@ public class Store {
                     checkSelected();
                 }
                 if (event.getCode()==KeyCode.ENTER){
-//                    parseCars();
-//                    select(currentPositionCar);
-//                    rewriteStore();
+                    if (parseCars().get(currentPositionCar).getBuy()) {
+                        select(currentPositionCar);
+                        rewriteStore();
+                        checkSelected();
+                    } else {
+                        if (getMoney()>=parseCars().get(currentPositionCar).getPrice()){
+                            buyCar(currentPositionCar,parseCars().get(currentPositionCar).getPrice());
+                            rewriteStore();
+                            rewriteMoney();
+                            outMoney.setText(Double.toString(getMoney()));
+                            checkBuy();
+                            select(currentPositionCar);
+                            checkSelected();
+                        }
+                    }
                 }
 
                 if (event.getCode() == KeyCode.ESCAPE) {
@@ -206,7 +233,7 @@ public class Store {
         });
     }
 
-    //  считывание из файла всех машин + создание объектов
+    // считывание из файла всех машин + создание объектов
     public static ArrayList<Car> parseCars() {
         countCars = 0;
         File file = new File("./src/main/resources/files/store");
@@ -229,14 +256,17 @@ public class Store {
         return Cars;
     }
 
-    //      перезапись файла Store !
+
+
+
+    // перезапись файла Store !
     public static void rewriteStore() {
         int i = 0;
         Car car;
         File f = new File("./src/main/resources/files/store");
         try {
             PrintWriter writer = new PrintWriter(f);
-            while (i != Cars.size()) {
+            while (i != countCars) {
                 car = Cars.get(i);
                 writer.write(car.getName() + ';' + car.getImgSide() +
                         ';' + car.getImgAbove() + ';' + car.getMaxSpeed() + ';' + car.getWidth() +
@@ -285,6 +315,11 @@ public class Store {
     public static void setMoney(double moneyAdd){
         money = getMoney()+moneyAdd;
         rewriteMoney();
+    }
+    //покупка машины ( вычет из баблишек +  )
+    public static void buyCar(int pos,double price){
+        Cars.get(pos).setBuy(true);
+        money-=price;
     }
 
     //получение текуще-выбранной тачки!
@@ -353,7 +388,7 @@ public class Store {
 
     public void select(int pos){
         Cars.get(pos).setSelected(true);
-        for (int i=0;i<pos;i++){
+        for (int i=0;i<countCars;i++){
             if (i!=pos){
                 Cars.get(i).setSelected(false);
             }
