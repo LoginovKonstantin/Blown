@@ -94,13 +94,9 @@ public class NewGame{
         root.getChildren().get(4).setLayoutY(10);
 
         root.getChildren().add(5, boxPng);
-        root.getChildren().get(5).setLayoutX(652);
-        root.getChildren().get(5).setLayoutY(0);
-
         root.getChildren().add(6, moneyPng);
-        root.getChildren().get(6).setLayoutX(547);
-        root.getChildren().get(6).setLayoutY(0);
-
+        randomMoney(root.getChildren().get(6));
+        randomBox(root.getChildren().get(6), root.getChildren().get(5));
 
         sceneNewGame = new Scene(root, HEIGHT, WIDTH);
         MainApp.stage.setTitle("BLOWN");
@@ -141,7 +137,6 @@ public class NewGame{
                     MainApp.stage.setTitle("BLOWN");
                     MainApp.stage.setScene(scene);
                     timeline.stop();
-
                 }else{
                     if(event.getCode() == controll[0]) up = true;
                     if(event.getCode() == controll[1]) left = true;
@@ -239,9 +234,10 @@ public class NewGame{
             if(pointsBox[i] > nodeCar.getLayoutX() && pointsBox[i] < nodeCar.getLayoutX() + currentCar.getWidth() &&
                     pointsBox[i + 1] > nodeCar.getLayoutY() && pointsBox[i + 1] < nodeCar.getLayoutY() + currentCar.getHeight()){
                 timeline.stop();
+
                 /*
-                    END GAME
-                */
+                END GAME
+                 */
                 break;
             }
         }
