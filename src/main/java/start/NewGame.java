@@ -172,7 +172,6 @@ public class NewGame{
                         }
                     }
                 }
-
             }
         });
 
@@ -233,11 +232,20 @@ public class NewGame{
         for(int i = 0; i < pointsBox.length; i += 2){
             if(pointsBox[i] > nodeCar.getLayoutX() && pointsBox[i] < nodeCar.getLayoutX() + currentCar.getWidth() &&
                     pointsBox[i + 1] > nodeCar.getLayoutY() && pointsBox[i + 1] < nodeCar.getLayoutY() + currentCar.getHeight()){
-                timeline.stop();
+                Store.setMoney(money);
 
-                /*
-                END GAME
-                 */
+
+                Parent root = null;
+                try {
+                    root = FXMLLoader.load(getClass().getResource("/fxml/main.fxml"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Scene scene = new Scene(root, 1290, 680);
+                scene.getStylesheets().add("/styles/main.css");
+                MainApp.stage.setTitle("BLOWN");
+                MainApp.stage.setScene(scene);
+                timeline.stop();
                 break;
             }
         }
