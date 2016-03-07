@@ -206,23 +206,8 @@ public class NewGame{
                 }
             }
         }
-        //money
+
         Node nodeCar = root.getChildren().get(3);
-        double [] pointsMoney = new double[]{root.getChildren().get(6).getLayoutX(), root.getChildren().get(6).getLayoutY(),
-                root.getChildren().get(6).getLayoutX(), root.getChildren().get(6).getLayoutY() + 25,
-                root.getChildren().get(6).getLayoutX() + 75, root.getChildren().get(6).getLayoutY(),
-                root.getChildren().get(6).getLayoutX() + 75, root.getChildren().get(6).getLayoutY() + 25};
-        for(int i = 0; i < pointsMoney.length; i += 2){
-            if(pointsMoney[i] > nodeCar.getLayoutX() && pointsMoney[i] < nodeCar.getLayoutX() + currentCar.getWidth() &&
-               pointsMoney[i + 1] > nodeCar.getLayoutY() && pointsMoney[i + 1] < nodeCar.getLayoutY() + currentCar.getHeight()){
-                randomMoney(root.getChildren().get(6));
-                money += 10;
-                break;
-            }
-        }
-        if(root.getChildren().get(6).getLayoutY() > 680){
-            randomMoney(root.getChildren().get(6));
-        }
 
         //box
         double [] pointsBox = new double[]{root.getChildren().get(5).getLayoutX(), root.getChildren().get(5).getLayoutY(),
@@ -251,6 +236,23 @@ public class NewGame{
         }
         if(root.getChildren().get(5).getLayoutY() > 680){
             randomBox(root.getChildren().get(6), root.getChildren().get(5));
+        }
+
+        //money
+        double [] pointsMoney = new double[]{root.getChildren().get(6).getLayoutX(), root.getChildren().get(6).getLayoutY(),
+                root.getChildren().get(6).getLayoutX(), root.getChildren().get(6).getLayoutY() + 25,
+                root.getChildren().get(6).getLayoutX() + 75, root.getChildren().get(6).getLayoutY(),
+                root.getChildren().get(6).getLayoutX() + 75, root.getChildren().get(6).getLayoutY() + 25};
+        for(int i = 0; i < pointsMoney.length; i += 2){
+            if(pointsMoney[i] > nodeCar.getLayoutX() && pointsMoney[i] < nodeCar.getLayoutX() + currentCar.getWidth() &&
+                    pointsMoney[i + 1] > nodeCar.getLayoutY() && pointsMoney[i + 1] < nodeCar.getLayoutY() + currentCar.getHeight()){
+                randomMoney(root.getChildren().get(6));
+                money += 10;
+                break;
+            }
+        }
+        if(root.getChildren().get(6).getLayoutY() > 680){
+            randomMoney(root.getChildren().get(6));
         }
 
         root.getChildren().get(0).setLayoutY((root.getChildren().get(0).getLayoutY() + offsetY));
