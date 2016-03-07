@@ -53,10 +53,10 @@ public class Store {
 
         root = new Group();
         background = new ImageView(BACKGROUND);
-        left=new ImageView("images/left.png");
-        right=new ImageView("images/right.png");
-        close=new ImageView("images/close.png");
-        drive=new ImageView("images/drive.png");
+        left=new ImageView("/images/left.png");
+        right=new ImageView("/images/right.png");
+        close=new ImageView("/images/close.png");
+        drive=new ImageView("/images/drive.png");
 
         lbMoney=new Label();
         outMoney=new Label();

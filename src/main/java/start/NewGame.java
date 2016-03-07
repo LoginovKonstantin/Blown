@@ -34,11 +34,14 @@ public class NewGame{
     final static Image BACKGROUND_IMAGE1 = new Image("/images/road1.jpg");
     final static Image BACKGROUND_IMAGE2 = new Image("/images/road2.jpg");
     final static Image BACKGROUND_IMAGE3 = new Image("/images/road3.jpg");
-    final static Image CAR = new Image("/images/carCorvetAbove.png");
+    private static Image MONEY_PNG = new Image("/images/money.png");
+    private static Image BOX_PNG = new Image("/images/box.png");
 
     private ImageView background1;
     private ImageView background2;
     private ImageView background3;
+    private ImageView moneyPng;
+    private ImageView boxPng;
 
     private Scene sceneNewGame;
     private Group root;
@@ -58,6 +61,7 @@ public class NewGame{
     boolean up = false, left = false, right = false, down = false;
 
     public void showScene(){
+
         money = 0;
         currentCar = Store.getCar();
         maxSpeedCar = currentCar.getMaxSpeed();
@@ -71,6 +75,8 @@ public class NewGame{
         background1 = new ImageView(BACKGROUND_IMAGE1);
         background2 = new ImageView(BACKGROUND_IMAGE2);
         background3 = new ImageView(BACKGROUND_IMAGE3);
+        moneyPng = new ImageView(MONEY_PNG);
+        boxPng = new ImageView(BOX_PNG);
 
         ImageView car = new ImageView(new Image(currentCar.getImgAbove()));
 
@@ -86,6 +92,14 @@ public class NewGame{
         root.getChildren().add(4, labelMoney);
         root.getChildren().get(4).setLayoutX(10);
         root.getChildren().get(4).setLayoutY(10);
+
+        root.getChildren().add(5, boxPng);
+        root.getChildren().get(5).setLayoutX(652);
+        root.getChildren().get(5).setLayoutY(0);
+
+        root.getChildren().add(6, moneyPng);
+        root.getChildren().get(6).setLayoutX(547);
+        root.getChildren().get(6).setLayoutY(0);
 
 
         sceneNewGame = new Scene(root, HEIGHT, WIDTH);
@@ -153,9 +167,9 @@ public class NewGame{
                         }
                     }
                     if(down){
-                        if (speedCar > maxSpeedCar) {
+                        if (speedCar < 5) {
                             resetTimer(timeline, speedCar);
-                            speedCar -= 0.1;
+                            speedCar += 0.1;
                         }
                         if(currentNode.getLayoutY() < 480){
                             currentNode.setLayoutY(currentNode.getLayoutY() + offsetCarY);
@@ -165,6 +179,7 @@ public class NewGame{
 
             }
         });
+
         keyFrame = new KeyFrame(Duration.millis(speedCar), ae -> moveBackground());
         timeline = new Timeline(new KeyFrame(Duration.millis(speedCar), ae -> moveBackground()));
         timeline.setCycleCount(Animation.INDEFINITE);
@@ -196,9 +211,30 @@ public class NewGame{
                 }
             }
         }
+        //money
+        Node nodeCar = root.getChildren().get(3);
+        double [] points = new double[]{root.getChildren().get(6).getLayoutX(), root.getChildren().get(6).getLayoutY(),
+                root.getChildren().get(6).getLayoutX(), root.getChildren().get(6).getLayoutY() + 25,
+                root.getChildren().get(6).getLayoutX() + 75, root.getChildren().get(6).getLayoutY(),
+                root.getChildren().get(6).getLayoutX() + 75, root.getChildren().get(6).getLayoutY() + 25};
+        for(int i = 0; i < points.length; i += 2){
+            if(points[i] > nodeCar.getLayoutX() && points[i] < nodeCar.getLayoutX() + currentCar.getWidth() &&
+               points[i + 1] > nodeCar.getLayoutY() && points[i + 1] < nodeCar.getLayoutY() + currentCar.getHeight()){
+                randomMoney(root.getChildren().get(6));
+                money += 10;
+                break;
+            }
+        }
+
+        if(root.getChildren().get(6).getLayoutY() > 680){
+            randomMoney(root.getChildren().get(6));
+        }
+
         root.getChildren().get(0).setLayoutY((root.getChildren().get(0).getLayoutY() + offsetY));
         root.getChildren().get(1).setLayoutY((root.getChildren().get(1).getLayoutY() + offsetY));
         root.getChildren().get(2).setLayoutY((root.getChildren().get(2).getLayoutY() + offsetY));
+        root.getChildren().get(5).setLayoutY((root.getChildren().get(5).getLayoutY() + offsetY));
+        root.getChildren().get(6).setLayoutY((root.getChildren().get(6).getLayoutY() + offsetY));
 
         labelMoney.setText("MONEY " + (money));
     }
@@ -214,5 +250,13 @@ public class NewGame{
         }
     }
 
+    private static void randomMoney(Node money){
+        money.setLayoutX(0);money.setLayoutY(700);
+        if((int)(Math.random() * 500) == 1){
+            System.out.println("yes");
+            money.setLayoutX((int)(442 + Math.random() * 315)) ;
+            money.setLayoutY(0);
+        }
+    }
 
 }
