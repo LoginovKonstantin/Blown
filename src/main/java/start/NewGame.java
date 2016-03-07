@@ -2,6 +2,8 @@ package start;
 
 
 import controllers.SettingController;
+import eu.hansolo.medusa.Gauge;
+import eu.hansolo.medusa.GaugeBuilder;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -50,6 +52,7 @@ public class NewGame{
     private KeyCode[] controll = new KeyCode[4];//массив в котором коды клавиш, которые используются для управления
     private Label labelMoney;
     private Car currentCar;
+    private Gauge radial;
 
     double offsetY = 1;//смещение по Y
     double offsetCarY = 5;
@@ -71,6 +74,16 @@ public class NewGame{
         labelMoney.setTextFill(Color.RED);
 
         identifyControll();//определяем управление
+
+        //спидометр
+        radial = GaugeBuilder.create()
+                .skinType(Gauge.SkinType.MODERN)
+                .minValue(0)
+                .maxValue(300)
+                .maxWidth(150)
+                .maxHeight(150)
+                .value(Math.pow(speedCar, -1) * 120)
+                .build();
 
         background1 = new ImageView(BACKGROUND_IMAGE1);
         background2 = new ImageView(BACKGROUND_IMAGE2);
@@ -97,6 +110,10 @@ public class NewGame{
         root.getChildren().add(6, moneyPng);
         randomMoney(root.getChildren().get(6));
         randomBox(root.getChildren().get(6), root.getChildren().get(5));
+
+        root.getChildren().add(7, radial);
+        root.getChildren().get(7).setLayoutX(20);
+        root.getChildren().get(7).setLayoutY(510);
 
         sceneNewGame = new Scene(root, HEIGHT, WIDTH);
         MainApp.stage.setTitle("BLOWN");
@@ -171,6 +188,7 @@ public class NewGame{
                             currentNode.setLayoutY(currentNode.getLayoutY() + offsetCarY);
                         }
                     }
+                    radial.setValue(Math.pow(speedCar, -1) * 120);
                 }
             }
         });

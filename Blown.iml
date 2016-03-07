@@ -11,5 +11,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Maven: eu.hansolo.enzo:Enzo:0.2.0" level="project" />
+    <orderEntry type="library" name="Maven: eu.hansolo:Medusa:4.3" level="project" />
   </component>
 </module>
