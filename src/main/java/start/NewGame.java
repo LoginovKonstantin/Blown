@@ -129,6 +129,7 @@ public class NewGame{
             public void handle(KeyEvent event) {
                 Node currentNode = root.getChildren().get(3);
                 if(event.getCode()== KeyCode.ESCAPE){
+                    Store.setMoney(money);
                     Parent root = null;
                     try {
                         root = FXMLLoader.load(getClass().getResource("/fxml/main.fxml"));

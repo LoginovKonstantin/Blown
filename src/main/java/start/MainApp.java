@@ -28,15 +28,7 @@ public class MainApp extends Application {
         scene.getStylesheets().add("/styles/main.css");
         stage.setTitle("BLOWN");
         stage.setScene(scene);
-
-
-//        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-//            public void handle(KeyEvent event) {
-//                if(event.getCode()== KeyCode.ESCAPE){
-//                    System.exit(0);
-//                }
-//            }
-//        });
+;
         stage.show();
     }
 
