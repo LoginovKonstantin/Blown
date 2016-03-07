@@ -213,21 +213,39 @@ public class NewGame{
         }
         //money
         Node nodeCar = root.getChildren().get(3);
-        double [] points = new double[]{root.getChildren().get(6).getLayoutX(), root.getChildren().get(6).getLayoutY(),
+        double [] pointsMoney = new double[]{root.getChildren().get(6).getLayoutX(), root.getChildren().get(6).getLayoutY(),
                 root.getChildren().get(6).getLayoutX(), root.getChildren().get(6).getLayoutY() + 25,
                 root.getChildren().get(6).getLayoutX() + 75, root.getChildren().get(6).getLayoutY(),
                 root.getChildren().get(6).getLayoutX() + 75, root.getChildren().get(6).getLayoutY() + 25};
-        for(int i = 0; i < points.length; i += 2){
-            if(points[i] > nodeCar.getLayoutX() && points[i] < nodeCar.getLayoutX() + currentCar.getWidth() &&
-               points[i + 1] > nodeCar.getLayoutY() && points[i + 1] < nodeCar.getLayoutY() + currentCar.getHeight()){
+        for(int i = 0; i < pointsMoney.length; i += 2){
+            if(pointsMoney[i] > nodeCar.getLayoutX() && pointsMoney[i] < nodeCar.getLayoutX() + currentCar.getWidth() &&
+               pointsMoney[i + 1] > nodeCar.getLayoutY() && pointsMoney[i + 1] < nodeCar.getLayoutY() + currentCar.getHeight()){
                 randomMoney(root.getChildren().get(6));
                 money += 10;
                 break;
             }
         }
-
         if(root.getChildren().get(6).getLayoutY() > 680){
             randomMoney(root.getChildren().get(6));
+        }
+
+        //box
+        double [] pointsBox = new double[]{root.getChildren().get(5).getLayoutX(), root.getChildren().get(5).getLayoutY(),
+                root.getChildren().get(5).getLayoutX(), root.getChildren().get(5).getLayoutY() + 80,
+                root.getChildren().get(5).getLayoutX() + 80, root.getChildren().get(5).getLayoutY(),
+                root.getChildren().get(5).getLayoutX() + 80, root.getChildren().get(5).getLayoutY() + 80};
+        for(int i = 0; i < pointsBox.length; i += 2){
+            if(pointsBox[i] > nodeCar.getLayoutX() && pointsBox[i] < nodeCar.getLayoutX() + currentCar.getWidth() &&
+                    pointsBox[i + 1] > nodeCar.getLayoutY() && pointsBox[i + 1] < nodeCar.getLayoutY() + currentCar.getHeight()){
+                timeline.stop();
+                /*
+                    END GAME
+                */
+                break;
+            }
+        }
+        if(root.getChildren().get(5).getLayoutY() > 680){
+            randomBox(root.getChildren().get(6), root.getChildren().get(5));
         }
 
         root.getChildren().get(0).setLayoutY((root.getChildren().get(0).getLayoutY() + offsetY));
@@ -253,10 +271,20 @@ public class NewGame{
     private static void randomMoney(Node money){
         money.setLayoutX(0);money.setLayoutY(700);
         if((int)(Math.random() * 500) == 1){
-            System.out.println("yes");
             money.setLayoutX((int)(442 + Math.random() * 315)) ;
             money.setLayoutY(0);
         }
+    }
+    private static void randomBox(Node money, Node box){
+        box.setLayoutX(100);box.setLayoutY(800);
+        if((int)(Math.random() * 500) == 1){
+            int x = (int)(442 + Math.random() * 315);
+            while(x + 70 > money.getLayoutX() && x + 80 < money.getLayoutX()){
+                x = (int)(442 + Math.random() * 315);
+            }
+            box.setLayoutX(x);box.setLayoutY(0);
+        }
+
     }
 
 }
