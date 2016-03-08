@@ -349,6 +349,7 @@ public class Store {
                 , (Double.parseDouble("50000.0")), (Boolean.parseBoolean("true")), (Boolean.parseBoolean("true"))));
     }
 
+    //
     public void checkCurrentCar(){
         for (int i=0;i<countCars;i++){
             if (getCar().getName().equals(Cars.get(i).getName())){
