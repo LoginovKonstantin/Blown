@@ -105,7 +105,7 @@ public class Store {
         root.getChildren().get(5).setLayoutY(460);
         parseCars();
         checkCurrentCar();
-        nameCar.setText("NAME CAR: "+parseCars().get(currentPositionCar).getName());
+        nameCar.setText(parseCars().get(currentPositionCar).getName());
         maxSpeed.setText("SPEED: "+parseCars().get(currentPositionCar).getMaxSpeed()+" MPH/H");
 
         root.getChildren().add(6,price);
@@ -116,8 +116,8 @@ public class Store {
         root.getChildren().get(7).setLayoutX(480);
 
         root.getChildren().add(8,nameCar);
-        root.getChildren().get(8).setLayoutY(400);
-        root.getChildren().get(8).setLayoutX(566);
+        root.getChildren().get(8).setLayoutY(430);
+        root.getChildren().get(8).setLayoutX(620);
 
         root.getChildren().add(9,maxSpeed);
         root.getChildren().get(9).setLayoutY(400);
@@ -163,7 +163,7 @@ public class Store {
                             outPrice.setTextFill(Color.GOLD);
                         }
                         outPrice.setText(Double.toString(parseCars().get(currentPositionCar).getPrice()));
-                        nameCar.setText("NAME CAR: "+parseCars().get(currentPositionCar).getName());
+                        nameCar.setText(parseCars().get(currentPositionCar).getName());
                         maxSpeed.setText("SPEED: "+parseCars().get(currentPositionCar).getMaxSpeed()+" MPH/H");
                     }
                     if (currentPositionCar==0){
@@ -190,7 +190,7 @@ public class Store {
                             outPrice.setTextFill(Color.GOLD);
                         }
                         outPrice.setText(Double.toString(parseCars().get(currentPositionCar).getPrice()));
-                        nameCar.setText("NAME CAR: "+parseCars().get(currentPositionCar).getName());
+                        nameCar.setText(parseCars().get(currentPositionCar).getName());
                         maxSpeed.setText("SPEED: "+parseCars().get(currentPositionCar).getMaxSpeed()+" MPH/H");
                     }
                     if (currentPositionCar==8) {
