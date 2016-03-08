@@ -69,7 +69,7 @@ public class Store {
         outMoney.setTextFill(Color.GOLD);
         outMoney.setText(Double.toString(getMoney()));
         price=new Label();
-        price.setText("PRICE CAR:");
+        price.setText("PRICE:");
         price.setTextFill(Color.GOLD);
         nameCar=new Label();
         nameCar.setTextFill(Color.GOLD);
@@ -106,14 +106,14 @@ public class Store {
         parseCars();
         checkCurrentCar();
         nameCar.setText(parseCars().get(currentPositionCar).getName());
-        maxSpeed.setText("SPEED: "+parseCars().get(currentPositionCar).getMaxSpeed()+" MPH/H");
+        maxSpeed.setText("SPEED:      "+(Math.round(Math.pow(parseCars().get(currentPositionCar).getMaxSpeed(), -1) * 120))+" MPH/H");
 
         root.getChildren().add(6,price);
         root.getChildren().get(6).setLayoutY(400);
         root.getChildren().get(6).setLayoutX(400);
         root.getChildren().add(7,outPrice);
         root.getChildren().get(7).setLayoutY(400);
-        root.getChildren().get(7).setLayoutX(480);
+        root.getChildren().get(7).setLayoutX(470);
 
         root.getChildren().add(8,nameCar);
         root.getChildren().get(8).setLayoutY(430);
@@ -121,7 +121,7 @@ public class Store {
 
         root.getChildren().add(9,maxSpeed);
         root.getChildren().get(9).setLayoutY(400);
-        root.getChildren().get(9).setLayoutX(750);
+        root.getChildren().get(9).setLayoutX(700);
 
         root.getChildren().add(10,new ImageView("images/clear.png"));
         root.getChildren().get(10).setLayoutX(560);
@@ -164,7 +164,7 @@ public class Store {
                         }
                         outPrice.setText(Double.toString(parseCars().get(currentPositionCar).getPrice()));
                         nameCar.setText(parseCars().get(currentPositionCar).getName());
-                        maxSpeed.setText("SPEED: "+parseCars().get(currentPositionCar).getMaxSpeed()+" MPH/H");
+                        maxSpeed.setText("SPEED:      "+(Math.round(Math.pow(parseCars().get(currentPositionCar).getMaxSpeed(), -1) * 120))+" MPH/H");
                     }
                     if (currentPositionCar==0){
                         root.getChildren().set(3,(new ImageView("images/clear.png")));
@@ -191,7 +191,7 @@ public class Store {
                         }
                         outPrice.setText(Double.toString(parseCars().get(currentPositionCar).getPrice()));
                         nameCar.setText(parseCars().get(currentPositionCar).getName());
-                        maxSpeed.setText("SPEED: "+parseCars().get(currentPositionCar).getMaxSpeed()+" MPH/H");
+                        maxSpeed.setText("SPEED:       "+(Math.round(Math.pow(parseCars().get(currentPositionCar).getMaxSpeed(), -1) * 120))+" MPH/H");
                     }
                     if (currentPositionCar==8) {
                         root.getChildren().set(4,(new ImageView("images/clear.png")));
