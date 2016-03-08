@@ -237,18 +237,17 @@ public class NewGame{
                     pointsBox[i + 1] > nodeCar.getLayoutY() && pointsBox[i + 1] < nodeCar.getLayoutY() + currentCar.getHeight()){
                 Store.setMoney(money);
 
-
-                Parent root = null;
-                try {
-                    root = FXMLLoader.load(getClass().getResource("/fxml/main.fxml"));
-                } catch (IOException e) {
-                    e.printStackTrace();
+                for (int j = 0; j < controll.length; j++){
+                    controll[j] = null;
                 }
-                Scene scene = new Scene(root, 1290, 680);
-                scene.getStylesheets().add("/styles/main.css");
-                MainApp.stage.setTitle("BLOWN");
-                MainApp.stage.setScene(scene);
                 timeline.stop();
+                Label labelEnd = new Label("END GAME");
+                labelEnd.setFont(Font.font("AVENTURA", 55));
+                labelEnd.setTextFill(Color.RED);
+                root.getChildren().add(7, labelEnd);
+                root.getChildren().get(7).setLayoutX(500);
+                root.getChildren().get(7).setLayoutY(200);
+
                 break;
             }
         }
@@ -265,12 +264,12 @@ public class NewGame{
             if(pointsMoney[i] > nodeCar.getLayoutX() && pointsMoney[i] < nodeCar.getLayoutX() + currentCar.getWidth() &&
                     pointsMoney[i + 1] > nodeCar.getLayoutY() && pointsMoney[i + 1] < nodeCar.getLayoutY() + currentCar.getHeight()){
                 randomMoney(root.getChildren().get(6), root.getChildren().get(5));
-                money += 10;
+                money += 100;
                 break;
             }
         }
         if(root.getChildren().get(6).getLayoutY() > 680){
-            randomBox(root.getChildren().get(5), root.getChildren().get(6));
+            randomMoney(root.getChildren().get(6), root.getChildren().get(5));
         }
 
         root.getChildren().get(0).setLayoutY((root.getChildren().get(0).getLayoutY() + offsetY));
@@ -279,7 +278,7 @@ public class NewGame{
         root.getChildren().get(5).setLayoutY((root.getChildren().get(5).getLayoutY() + offsetY));
         root.getChildren().get(6).setLayoutY((root.getChildren().get(6).getLayoutY() + offsetY));
 
-        labelMoney.setText("MONEY " + (money));
+        labelMoney.setText("MONEY " + (int)(money));
     }
 
     //получаем вид управления, который выбран в игре в setting
@@ -297,7 +296,7 @@ public class NewGame{
         money.setLayoutX(0);money.setLayoutY(700);
         if((int)(Math.random() * 500) == 1){
             int x = (int)(442 + Math.random() * 315);
-            while(x + 70 > box.getLayoutX() && x < box.getLayoutX() + 80 && x > box.getLayoutX() + 80){
+            while(x > box.getLayoutX() && x < box.getLayoutX() + 80 || x + 70 > box.getLayoutX() && x + 70 < box.getLayoutX() + 80){
                 x = (int)(442 + Math.random() * 315);
             }
             money.setLayoutX(x); money.setLayoutY(0);
@@ -307,10 +306,10 @@ public class NewGame{
         box.setLayoutX(100);box.setLayoutY(800);
         if((int)(Math.random() * 500) == 1){
             int x = (int)(442 + Math.random() * 315);
-            while(x < money.getLayoutX() + 70 && x > money.getLayoutX() && x + 80 > money.getLayoutX()){
+            while(x > money.getLayoutX() && x < money.getLayoutX() + 70 || x + 80 > money.getLayoutX() && x + 80 < money.getLayoutX() + 70){
                 x = (int)(442 + Math.random() * 315);
             }
-            box.setLayoutX(x);box.setLayoutY(0);
+            box.setLayoutX(x); box.setLayoutY(0);
         }
 
     }
