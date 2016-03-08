@@ -108,7 +108,7 @@ public class NewGame{
 
         root.getChildren().add(5, boxPng);
         root.getChildren().add(6, moneyPng);
-        randomMoney(root.getChildren().get(6));
+        randomMoney(root.getChildren().get(6), root.getChildren().get(5));
         randomBox(root.getChildren().get(6), root.getChildren().get(5));
 
         root.getChildren().add(7, radial);
@@ -264,13 +264,13 @@ public class NewGame{
         for(int i = 0; i < pointsMoney.length; i += 2){
             if(pointsMoney[i] > nodeCar.getLayoutX() && pointsMoney[i] < nodeCar.getLayoutX() + currentCar.getWidth() &&
                     pointsMoney[i + 1] > nodeCar.getLayoutY() && pointsMoney[i + 1] < nodeCar.getLayoutY() + currentCar.getHeight()){
-                randomMoney(root.getChildren().get(6));
+                randomMoney(root.getChildren().get(6), root.getChildren().get(5));
                 money += 10;
                 break;
             }
         }
         if(root.getChildren().get(6).getLayoutY() > 680){
-            randomMoney(root.getChildren().get(6));
+            randomBox(root.getChildren().get(5), root.getChildren().get(6));
         }
 
         root.getChildren().get(0).setLayoutY((root.getChildren().get(0).getLayoutY() + offsetY));
@@ -284,7 +284,7 @@ public class NewGame{
 
     //получаем вид управления, который выбран в игре в setting
     public void identifyControll(){
-        if(SettingController.controll.equals("up") || SettingController.controll.equals("")){
+        if(SettingController.getControll().equals("up") || SettingController.getControll().equals("")){
             controll[0] = KeyCode.W; controll[1] = KeyCode.A;
             controll[2] = KeyCode.S; controll[3] = KeyCode.D;
         }else{
@@ -293,18 +293,21 @@ public class NewGame{
         }
     }
 
-    private static void randomMoney(Node money){
+    private static void randomMoney(Node money, Node box){
         money.setLayoutX(0);money.setLayoutY(700);
         if((int)(Math.random() * 500) == 1){
-            money.setLayoutX((int)(442 + Math.random() * 315)) ;
-            money.setLayoutY(0);
+            int x = (int)(442 + Math.random() * 315);
+            while(x + 70 > box.getLayoutX() && x < box.getLayoutX() + 80 && x > box.getLayoutX() + 80){
+                x = (int)(442 + Math.random() * 315);
+            }
+            money.setLayoutX(x); money.setLayoutY(0);
         }
     }
     private static void randomBox(Node money, Node box){
         box.setLayoutX(100);box.setLayoutY(800);
         if((int)(Math.random() * 500) == 1){
             int x = (int)(442 + Math.random() * 315);
-            while(x + 70 > money.getLayoutX() && x + 80 < money.getLayoutX()){
+            while(x < money.getLayoutX() + 70 && x > money.getLayoutX() && x + 80 > money.getLayoutX()){
                 x = (int)(442 + Math.random() * 315);
             }
             box.setLayoutX(x);box.setLayoutY(0);

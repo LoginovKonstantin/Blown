@@ -9,6 +9,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
@@ -45,6 +46,19 @@ public class SettingController {
         } catch (IOException e) {
             System.out.println("Ошибка при чтении файла" + e);
         }
+    }
+
+    public static String getControll(){
+        File file = new File("./src/main/resources/files/setting");
+        try {
+            Scanner in = new Scanner(file);
+            while (in.hasNext()) {
+                controll = in.nextLine();
+            }
+        } catch (FileNotFoundException e) {
+
+        }
+        return controll;
     }
 
     public void checkRadio(ActionEvent actionEvent) {
