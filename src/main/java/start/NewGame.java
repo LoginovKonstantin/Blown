@@ -56,7 +56,7 @@ public class NewGame{
 
     double offsetY = 1;//смещение по Y
     double offsetCarY = 5;
-    double offsetCarX = 7;
+    double offsetCarX = 8;
     double speedCar = 5;
     double maxSpeedCar;
     double money;
@@ -235,11 +235,13 @@ public class NewGame{
         for(int i = 0; i < pointsBox.length; i += 2){
             if(pointsBox[i] > nodeCar.getLayoutX() && pointsBox[i] < nodeCar.getLayoutX() + currentCar.getWidth() &&
                     pointsBox[i + 1] > nodeCar.getLayoutY() && pointsBox[i + 1] < nodeCar.getLayoutY() + currentCar.getHeight()){
-                Store.setMoney(money);
 
                 for (int j = 0; j < controll.length; j++){
                     controll[j] = null;
                 }
+
+                Store.setMoney(money);
+
                 timeline.stop();
                 Label labelEnd = new Label("END GAME");
                 labelEnd.setFont(Font.font("AVENTURA", 55));
@@ -299,6 +301,7 @@ public class NewGame{
             while(x > box.getLayoutX() && x < box.getLayoutX() + 80 || x + 70 > box.getLayoutX() && x + 70 < box.getLayoutX() + 80){
                 x = (int)(442 + Math.random() * 315);
             }
+            System.out.println("Рандом мани +++++ " + x );
             money.setLayoutX(x); money.setLayoutY(0);
         }
     }
@@ -309,6 +312,7 @@ public class NewGame{
             while(x > money.getLayoutX() && x < money.getLayoutX() + 70 || x + 80 > money.getLayoutX() && x + 80 < money.getLayoutX() + 70){
                 x = (int)(442 + Math.random() * 315);
             }
+            System.out.println("Рандом бокс |_|_| " + x );
             box.setLayoutX(x); box.setLayoutY(0);
         }
 
