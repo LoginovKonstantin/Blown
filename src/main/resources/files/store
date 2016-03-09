@@ -1,8 +1,8 @@
 KOPEIKA;/images/carCopeukaSide.png;/images/carCopeukaAbove.png;4.0;90.0;190.0;50000.0;true;false;
-VOLGA;/images/carVolgaSide.png;/images/carVolgaAbove.png;3.5;90.0;195.0;70000.0;true;false;
-PRIORA;/images/carPrioraSide.png;/images/carPrioraAbove.png;3.0;93.0;189.0;100000.0;true;false;
-CHEVROLET;/images/carChevroletSide.png;/images/carChevroletAbove.png;3.0;95.0;195.0;100000.0;true;false;
-NISSAN;/images/carNissanSide.png;/images/carNissanAbove.png;2.5;93.0;190.0;120000.0;true;true;
+VOLGA;/images/carVolgaSide.png;/images/carVolgaAbove.png;3.5;90.0;195.0;70000.0;false;false;
+PRIORA;/images/carPrioraSide.png;/images/carPrioraAbove.png;3.0;93.0;189.0;100000.0;false;false;
+CHEVROLET;/images/carChevroletSide.png;/images/carChevroletAbove.png;3.0;95.0;195.0;100000.0;true;true;
+NISSAN;/images/carNissanSide.png;/images/carNissanAbove.png;2.5;93.0;190.0;120000.0;true;false;
 BMW;/images/carBmwSide.png;/images/carBmwAbove.png;2.0;90.0;190.0;200000.0;false;false;
 CORVETT;/images/carCorvetSide.png;/images/carCorvetAbove.png;1.0;90.0;190.0;250000.0;false;false;
 LAMBO;/images/carLamborginiSide.png;/images/carLamborginiAbove.png;0.7;93.0;186.0;290000.0;false;false;

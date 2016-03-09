@@ -106,7 +106,7 @@ public class Store {
         parseCars();
         checkCurrentCar();
         nameCar.setText(parseCars().get(currentPositionCar).getName());
-        maxSpeed.setText("SPEED: "+(Math.round(Math.pow(parseCars().get(currentPositionCar).getMaxSpeed(), -1) * 120))+" MPH/H");
+        maxSpeed.setText("SPEED: "+(Math.round(Math.pow(parseCars().get(currentPositionCar).getMaxSpeed(), -1) * 120))+" KM/H");
 
         root.getChildren().add(6,price);
         root.getChildren().get(6).setLayoutY(400);
@@ -164,7 +164,7 @@ public class Store {
                         }
                         outPrice.setText(Double.toString(parseCars().get(currentPositionCar).getPrice()));
                         nameCar.setText(parseCars().get(currentPositionCar).getName());
-                        maxSpeed.setText("SPEED: "+(Math.round(Math.pow(parseCars().get(currentPositionCar).getMaxSpeed(), -1) * 120))+" MPH/H");
+                        maxSpeed.setText("SPEED: "+(Math.round(Math.pow(parseCars().get(currentPositionCar).getMaxSpeed(), -1) * 120))+" KM/H");
                     }
                     if (currentPositionCar==0){
                         root.getChildren().set(3,(new ImageView("images/clear.png")));
@@ -191,7 +191,7 @@ public class Store {
                         }
                         outPrice.setText(Double.toString(parseCars().get(currentPositionCar).getPrice()));
                         nameCar.setText(parseCars().get(currentPositionCar).getName());
-                        maxSpeed.setText("SPEED: "+(Math.round(Math.pow(parseCars().get(currentPositionCar).getMaxSpeed(), -1) * 120))+" MPH/H");
+                        maxSpeed.setText("SPEED: "+(Math.round(Math.pow(parseCars().get(currentPositionCar).getMaxSpeed(), -1) * 120))+" KM/H");
                     }
                     if (currentPositionCar==8) {
                         root.getChildren().set(4,(new ImageView("images/clear.png")));
