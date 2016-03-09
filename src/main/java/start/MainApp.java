@@ -8,6 +8,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
@@ -24,9 +25,10 @@ public class MainApp extends Application {
 
         stage.setMinWidth(1280);
         stage.setMinHeight(670);
+        stage.getIcons().add(new Image("/images/iconApp.png"));
         primaryStage.setResizable(false);
         scene.getStylesheets().add("/styles/main.css");
-        stage.setTitle("BLOWN");
+        stage.setTitle("LOWN");
         stage.setScene(scene);
         stage.show();
     }
