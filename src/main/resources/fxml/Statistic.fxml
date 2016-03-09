@@ -10,9 +10,9 @@
    <children>
       <Label layoutX="500.0" layoutY="440.0" text="MAX SPEED:" textFill="#01bbd2" />
       <Label fx:id="speed" layoutX="710.0" layoutY="440.0" text="" textFill="#01bbd2" />
-      <Label layoutX="500.0" layoutY="480.0" text="MAX DISTANCE:" textFill="#01bbd2" />
+      <Label layoutX="500.0" layoutY="480.0" text="TOTAL DISTANCE:" textFill="#01bbd2" />
       <Label fx:id="distance" layoutX="710.0" layoutY="480.0" text="" textFill="#01bbd2" />
-      <Label layoutX="500.0" layoutY="520.0" text="MAX MONEY:" textFill="#01bbd2" />
+      <Label layoutX="500.0" layoutY="520.0" text="TOTAL MONEY:" textFill="#01bbd2" />
       <Label fx:id="money" layoutX="710.0" layoutY="520.0" text="" textFill="#01bbd2" />
    </children>
 </Pane>

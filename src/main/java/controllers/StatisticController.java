@@ -13,15 +13,15 @@ import java.util.Scanner;
  */
 public class StatisticController {
     @FXML
-        private Label speed;
+    private Label speed;
     @FXML
-        private Label distance;
+    private Label distance;
     @FXML
-        private Label money;
+    private Label money;
 
-        public static String maxSpeed;
-        public static String maxDistance;
-        public static String maxMoney;
+    public static String maxSpeed;
+    public static String maxDistance;
+    public static String maxMoney;
 
     @FXML
     private void initialize(){

@@ -23,7 +23,11 @@ import javafx.scene.text.Font;
 import javafx.util.Duration;
 import objects.Car;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Scanner;
 
 /**
  * Created by 4 on 02.03.2016.
@@ -50,7 +54,7 @@ public class NewGame{
     private Timeline timeline;
     private KeyFrame keyFrame;
     private KeyCode[] controll = new KeyCode[4];//массив в котором коды клавиш, которые используются для управления
-    private Label labelMoney;
+    private Label labelMoney, labelDistance;
     private Car currentCar;
     private Gauge radial;
 
@@ -60,18 +64,25 @@ public class NewGame{
     double speedCar = 5;
     double maxSpeedCar;
     double money;
+    double distance;
+    double currentMaxSpeed;
 
     boolean up = false, left = false, right = false, down = false;
 
     public void showScene(){
 
         money = 0;
+        distance = 0;
         currentCar = Store.getCar();
         maxSpeedCar = currentCar.getMaxSpeed();
 
         labelMoney = new Label("MONEY");
         labelMoney.setFont(Font.font("AVENTURA"));
         labelMoney.setTextFill(Color.RED);
+
+        labelDistance = new Label("DISTANCE");
+        labelDistance.setFont(Font.font("AVENTURA"));
+        labelDistance.setTextFill(Color.RED);
 
         identifyControll();//определяем управление
 
@@ -84,6 +95,7 @@ public class NewGame{
                 .maxHeight(150)
                 .value(Math.pow(speedCar, -1) * 120)
                 .build();
+        currentMaxSpeed = radial.getValue();
 
         background1 = new ImageView(BACKGROUND_IMAGE1);
         background2 = new ImageView(BACKGROUND_IMAGE2);
@@ -115,6 +127,10 @@ public class NewGame{
         root.getChildren().get(7).setLayoutX(20);
         root.getChildren().get(7).setLayoutY(510);
 
+        root.getChildren().add(8, labelDistance);
+        root.getChildren().get(8).setLayoutX(10);
+        root.getChildren().get(8).setLayoutY(30);
+
         sceneNewGame = new Scene(root, HEIGHT, WIDTH);
         MainApp.stage.setTitle("BLOWN");
         MainApp.stage.setScene(sceneNewGame);
@@ -142,6 +158,7 @@ public class NewGame{
             public void handle(KeyEvent event) {
                 Node currentNode = root.getChildren().get(3);
                 if(event.getCode()== KeyCode.ESCAPE){
+                    writeInStatistic(currentMaxSpeed, distance, money);
                     Store.setMoney(money);
                     Parent root = null;
                     try {
@@ -189,6 +206,9 @@ public class NewGame{
                         }
                     }
                     radial.setValue(Math.pow(speedCar, -1) * 120);
+                    if(radial.getValue() > currentMaxSpeed){
+                        currentMaxSpeed = radial.getValue();
+                    }
                 }
             }
         });
@@ -210,20 +230,25 @@ public class NewGame{
     //меняем слои, выбираем из 3 слуйчайны и подставляем + двигаем все слои
     public void moveBackground(){
         if(root.getChildren().get(0).getLayoutY() == 0){
+            distance += 5;
             int randomChildren = (int)(Math.random() * 2) + 1;// второй(1) или третий(2) слой берем
             root.getChildren().get(randomChildren).setLayoutY(-720);
         }else{
             if(root.getChildren().get(1).getLayoutY() == 0){
+                distance += 5;
                 int range = (int)(Math.random() * 2);
                 int randomChildren = (range == 0) ? 0 : 2;//первый(0) или третий(2) слой берем
                 root.getChildren().get(randomChildren).setLayoutY(-720);
             }else{
                 if(root.getChildren().get(2).getLayoutY() == 0){
+                    distance += 5;
                     int randomChildren = (int)(Math.random() * 2);//первый(0) или второй(1) слой берем
                     root.getChildren().get(randomChildren).setLayoutY(-720);
                 }
             }
         }
+        labelDistance.setText("DISTANCE " + (int)(distance));
+
 
         Node nodeCar = root.getChildren().get(3);
 
@@ -246,9 +271,9 @@ public class NewGame{
                 Label labelEnd = new Label("END GAME");
                 labelEnd.setFont(Font.font("AVENTURA", 55));
                 labelEnd.setTextFill(Color.RED);
-                root.getChildren().add(7, labelEnd);
-                root.getChildren().get(7).setLayoutX(500);
-                root.getChildren().get(7).setLayoutY(200);
+                root.getChildren().add(9, labelEnd);
+                root.getChildren().get(9).setLayoutX(500);
+                root.getChildren().get(9).setLayoutY(200);
 
                 break;
             }
@@ -314,6 +339,34 @@ public class NewGame{
             }
             System.out.println("Рандом бокс |_|_| " + x );
             box.setLayoutX(x); box.setLayoutY(0);
+        }
+
+    }
+
+    private static void writeInStatistic(double speed, double distance, double money){
+        File fileStatistic = new File("./src/main/resources/files/statistic");
+        try {
+            Scanner scan = new Scanner(fileStatistic);
+            double speedInFile = Double.parseDouble(scan.nextLine());
+            double distanceInFile = Double.parseDouble(scan.nextLine());
+            double moneyInFile = Double.parseDouble(scan.nextLine());
+
+            scan.close();
+
+            moneyInFile += money;
+            distanceInFile += distance;
+            if(speed > speedInFile){
+                speedInFile = speed;
+            }
+
+            PrintWriter out = new PrintWriter(fileStatistic);
+            out.write(String.valueOf((int)speedInFile) + "\n");
+            out.write(String.valueOf((int)distanceInFile) + "\n");
+            out.write(String.valueOf((int)moneyInFile));
+            out.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
 
     }
