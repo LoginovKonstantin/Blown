@@ -48,4 +48,14 @@
    <center>
 
    </center>
+   <top>
+      <Button fx:id="btnWhat" onAction="#clickOnWhat" mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" text="?" BorderPane.alignment="CENTER">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <BorderPane.margin>
+            <Insets left="1210.0" top="10.0" />
+         </BorderPane.margin>
+      </Button>
+   </top>
 </BorderPane>
