@@ -261,6 +261,7 @@ public class NewGame{
                 for (int j = 0; j < controll.length; j++){
                     controll[j] = null;
                 }
+                up = false;left = false; down = false;right = false;
                 timelineRightMove.stop();
                 timelineLeftMove.stop();
 
