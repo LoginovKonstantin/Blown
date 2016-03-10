@@ -58,9 +58,11 @@ public class NewGame{
     double offsetY = 1, offsetCarX = 8, speedCar = 5,
             maxSpeedCar, money, distance, currentMaxSpeed;
 
-    boolean up = false, left = false, right = false, down = false;
+    boolean up, left, right, down;
 
     public void showScene(){
+        up = false; left = false;
+        right = false; down = false;
 
         money = 0;
         distance = 0;
@@ -130,24 +132,18 @@ public class NewGame{
         sceneNewGame.setOnKeyReleased(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                if (event.getCode()== controll[3]){
-                    System.out.println("lol");
-                    timelineRightMove.stop();
-                }
-                if (event.getCode()== controll[1]){
-                    System.out.println("lol");
-                    timelineLeftMove.stop();
-                }
                 if(event.getCode() == controll[0]){
                     up = false;
                 }
                 if(event.getCode() == controll[1]){
+                    timelineLeftMove.stop();
                     left = false;
                 }
                 if(event.getCode() == controll[2]){
                     down = false;
                 }
                 if(event.getCode() == controll[3]){
+                    timelineRightMove.stop();
                     right = false;
                 }
             }
@@ -265,6 +261,8 @@ public class NewGame{
                 for (int j = 0; j < controll.length; j++){
                     controll[j] = null;
                 }
+                timelineRightMove.stop();
+                timelineLeftMove.stop();
 
                 Store.setMoney(money);
 
@@ -345,6 +343,7 @@ public class NewGame{
     }
     public static void right(){
         Node node=root.getChildren().get(3);
+        System.out.println("left");
         if(node.getLayoutX() < 750){
             node.setLayoutX(node.getLayoutX()+0.8);
         }
@@ -352,6 +351,7 @@ public class NewGame{
     }
     public static void left(){
         Node node=root.getChildren().get(3);
+        System.out.println("left");
         if(node.getLayoutX() > 440){
             node.setLayoutX(node.getLayoutX()-0.8);
         }
