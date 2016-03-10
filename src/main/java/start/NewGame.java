@@ -43,29 +43,20 @@ public class NewGame{
     private static Image MONEY_PNG = new Image("/images/money.png");
     private static Image BOX_PNG = new Image("/images/box.png");
 
-    private ImageView background1;
-    private ImageView background2;
-    private ImageView background3;
-    private ImageView moneyPng;
-    private ImageView boxPng;
+    private ImageView background1, background2,
+            background3,moneyPng, boxPng;
 
     private Scene sceneNewGame;
-    private Group root;
-    private Timeline timeline;
+    private static Group root;
+    private Timeline timeline, timelineLeftMove, timelineRightMove;
     private KeyFrame keyFrame;
     private KeyCode[] controll = new KeyCode[4];//массив в котором коды клавиш, которые используются для управления
     private Label labelMoney, labelDistance;
     private Car currentCar;
     private Gauge radial;
 
-    double offsetY = 1;//смещение по Y
-    double offsetCarY = 5;
-    double offsetCarX = 8;
-    double speedCar = 5;
-    double maxSpeedCar;
-    double money;
-    double distance;
-    double currentMaxSpeed;
+    double offsetY = 1, offsetCarX = 8, speedCar = 5,
+            maxSpeedCar, money, distance, currentMaxSpeed;
 
     boolean up = false, left = false, right = false, down = false;
 
@@ -139,6 +130,14 @@ public class NewGame{
         sceneNewGame.setOnKeyReleased(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
+                if (event.getCode()== controll[3]){
+                    System.out.println("lol");
+                    timelineRightMove.stop();
+                }
+                if (event.getCode()== controll[1]){
+                    System.out.println("lol");
+                    timelineLeftMove.stop();
+                }
                 if(event.getCode() == controll[0]){
                     up = false;
                 }
@@ -153,6 +152,18 @@ public class NewGame{
                 }
             }
         });
+
+        timelineRightMove = new Timeline(new KeyFrame(
+                Duration.millis(2),
+                ae -> right()));
+        timelineRightMove.setCycleCount(Animation.INDEFINITE);
+
+        timelineLeftMove = new Timeline(new KeyFrame(
+                Duration.millis(2),
+                ae -> left()));
+        timelineLeftMove.setCycleCount(Animation.INDEFINITE);
+
+
 
         sceneNewGame.setOnKeyPressed(new EventHandler<KeyEvent>() {
             public void handle(KeyEvent event) {
@@ -178,31 +189,21 @@ public class NewGame{
                     if(event.getCode() == controll[3]) right = true;
 
                     if(left){
-                        if (currentNode.getLayoutX() > 445) {
-                            currentNode.setLayoutX(currentNode.getLayoutX() - offsetCarX);
-                        }
+                        timelineLeftMove.play();
                     }
                     if(right){
-                        if((currentNode.getLayoutX()) < 750){
-                            currentNode.setLayoutX(currentNode.getLayoutX() + offsetCarX);
-                        }
+                        timelineRightMove.play();
                     }
                     if(up){
                         if (speedCar > maxSpeedCar) {
                             resetTimer(timeline, speedCar);
                             speedCar -= 0.1;
                         }
-                        if(currentNode.getLayoutY() > 320){
-                            currentNode.setLayoutY(currentNode.getLayoutY() - offsetCarY);
-                        }
                     }
                     if(down){
                         if (speedCar < 5) {
                             resetTimer(timeline, speedCar);
                             speedCar += 0.1;
-                        }
-                        if(currentNode.getLayoutY() < 480){
-                            currentNode.setLayoutY(currentNode.getLayoutY() + offsetCarY);
                         }
                     }
                     radial.setValue(Math.pow(speedCar, -1) * 120);
@@ -342,6 +343,19 @@ public class NewGame{
         }
 
     }
+    public static void right(){
+        Node node=root.getChildren().get(3);
+        if(node.getLayoutX() < 750){
+            node.setLayoutX(node.getLayoutX()+0.8);
+        }
+
+    }
+    public static void left(){
+        Node node=root.getChildren().get(3);
+        if(node.getLayoutX() > 440){
+            node.setLayoutX(node.getLayoutX()-0.8);
+        }
+    }
 
     private static void writeInStatistic(double speed, double distance, double money){
         File fileStatistic = new File("./src/main/resources/files/statistic");
@@ -368,7 +382,7 @@ public class NewGame{
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
     }
+
 
 }
