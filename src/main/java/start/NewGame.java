@@ -178,6 +178,9 @@ public class NewGame{
                     MainApp.stage.setTitle("BLOWN");
                     MainApp.stage.setScene(scene);
                     timeline.stop();
+                    timelineLeftMove.stop();
+                    timelineRightMove.stop();
+                    up = false; left = false; right = false; down = false;
                 }else{
                     if(event.getCode() == controll[0]) up = true;
                     if(event.getCode() == controll[1]) left = true;
@@ -344,7 +347,6 @@ public class NewGame{
     }
     public static void right(){
         Node node=root.getChildren().get(3);
-        System.out.println("left");
         if(node.getLayoutX() < 750){
             node.setLayoutX(node.getLayoutX()+0.8);
         }
@@ -352,7 +354,6 @@ public class NewGame{
     }
     public static void left(){
         Node node=root.getChildren().get(3);
-        System.out.println("left");
         if(node.getLayoutX() > 440){
             node.setLayoutX(node.getLayoutX()-0.8);
         }
