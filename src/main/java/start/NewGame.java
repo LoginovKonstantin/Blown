@@ -55,7 +55,7 @@ public class NewGame{
     private Car currentCar;
     private Gauge radial;
 
-    double offsetY = 1, offsetCarX = 8, speedCar = 5,
+    double offsetY = 1, speedCar = 5,
             maxSpeedCar, money, distance, currentMaxSpeed;
 
     boolean up, left, right, down;

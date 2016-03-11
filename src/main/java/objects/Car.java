@@ -63,6 +63,6 @@ public class Car {
 
     public void setSelected(boolean isSelected) { this.isSelected=isSelected; }
 
-    public int getCounter(){ return this.id; }
+    public int getCounter(){ return this.id;  }
 
 }
