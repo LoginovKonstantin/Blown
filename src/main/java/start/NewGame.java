@@ -18,15 +18,19 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
 import objects.Car;
+import sun.applet.Main;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URL;
 import java.util.Scanner;
 
 /**
@@ -63,7 +67,8 @@ public class NewGame{
     public void showScene(){
         up = false; left = false;
         right = false; down = false;
-
+        MainApp.music.stopMenu();
+        MainApp.music.playNewGame();
         money = 0;
         distance = 0;
         currentCar = Store.getCar();
@@ -165,6 +170,8 @@ public class NewGame{
             public void handle(KeyEvent event) {
                 Node currentNode = root.getChildren().get(3);
                 if(event.getCode()== KeyCode.ESCAPE){
+                    MainApp.music.pauseNewGame();
+                    MainApp.music.playMenu();
                     writeInStatistic(currentMaxSpeed, distance, money);
                     Store.setMoney(money);
                     Parent root = null;
