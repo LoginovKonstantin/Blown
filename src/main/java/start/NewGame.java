@@ -330,7 +330,7 @@ public class NewGame{
                 x = (int)(442 + Math.random() * 315);
             }
             System.out.println("Рандом мани +++++ " + x );
-            money.setLayoutX(x); money.setLayoutY(0);
+            money.setLayoutX(x); money.setLayoutY(-25);
         }
     }
     private static void randomBox(Node money, Node box){
@@ -341,7 +341,7 @@ public class NewGame{
                 x = (int)(442 + Math.random() * 315);
             }
             System.out.println("Рандом бокс |_|_| " + x );
-            box.setLayoutX(x); box.setLayoutY(0);
+            box.setLayoutX(x); box.setLayoutY(-80);
         }
 
     }
