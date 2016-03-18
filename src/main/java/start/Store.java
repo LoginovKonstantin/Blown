@@ -212,6 +212,7 @@ public class Store {
                             outMoney.setText(Double.toString(getMoney()));
                             checkBuy();
                             select(currentPositionCar);
+                            rewriteStore();
                             checkSelected();
                         }
                     }
@@ -313,8 +314,15 @@ public class Store {
 
     //прибавка к деньгам после игры newgame
     public static void setMoney(double moneyAdd){
-        money = getMoney()+moneyAdd;
-        rewriteMoney();
+        if (getMoney()<5000001){
+            money = getMoney()+moneyAdd;
+            rewriteMoney();
+        } else if (getMoney()+moneyAdd>5000001){
+            money = getMoney()+(5000001-getMoney());
+            if (money<5000001){
+                rewriteMoney();
+            }
+        }
     }
     //покупка машины ( вычет из баблишек +  )
     public static void buyCar(int pos,double price){
