@@ -43,13 +43,14 @@ public class NewGame {
     private static Image MONEY_PNG = new Image("/images/money.png");
     private static Image BOX_PNG = new Image("/images/box.png");
     private static Image smoke = new Image("/images/smoke.png");
+    private static Image dollars = new Image("/images/money.png");
 
     private ImageView background1, background2,
-            background3, moneyPng, boxPng, smokeDownLeft, smokeDownRight;
+            background3, moneyPng, boxPng, smokeDownLeft, smokeDownRight,moneyUp;
 
     private Scene sceneNewGame;
     private static Group root;
-    private Timeline timeline, timelineLeftMove, timelineRightMove, timelineSmoke;
+    private Timeline timeline, timelineLeftMove, timelineRightMove, timelineSmoke,timelineMoneyUp, timelinePhysicLeft,timelineResetRotateCar,timelinePhysicRight;
     private KeyFrame keyFrame;
     private KeyCode[] controll = new KeyCode[4];//массив в котором коды клавиш, которые используются для управления
     private Label labelMoney, labelDistance;
@@ -58,6 +59,8 @@ public class NewGame {
 
     double offsetY = 1, speedCar = 5,
             maxSpeedCar, money, distance, currentMaxSpeed;
+
+    int countPhysicLeft,countPhysicRight;
 
     boolean up, left, right, down;
 
@@ -68,6 +71,8 @@ public class NewGame {
         down = false;
         MainApp.music.stopMenu();
         MainApp.music.playNewGame();
+        countPhysicLeft=0;
+        countPhysicRight=0;
         money = 0;
         distance = 0;
         currentCar = Store.getCar();
@@ -75,11 +80,11 @@ public class NewGame {
 
         labelMoney = new Label("MONEY");
         labelMoney.setFont(Font.font("AVENTURA"));
-        labelMoney.setTextFill(Color.RED);
+        labelMoney.setTextFill(Color.GOLD);
 
         labelDistance = new Label("DISTANCE");
         labelDistance.setFont(Font.font("AVENTURA"));
-        labelDistance.setTextFill(Color.RED);
+        labelDistance.setTextFill(Color.PINK);
 
         identifyControll();//определяем управление
 
@@ -101,6 +106,7 @@ public class NewGame {
         boxPng = new ImageView(BOX_PNG);
         smokeDownLeft = new ImageView(smoke);
         smokeDownRight = new ImageView(smoke);
+        moneyUp = new ImageView(dollars);
 
         ImageView car = new ImageView(new Image(currentCar.getImgAbove()));
 
@@ -141,6 +147,11 @@ public class NewGame {
         root.getChildren().get(10).setLayoutY(600);
         root.getChildren().get(10).setOpacity(0);
 
+        root.getChildren().add(11, moneyUp);
+        root.getChildren().get(11).setLayoutX(10);
+        root.getChildren().get(11).setLayoutY(10);
+        root.getChildren().get(11).setOpacity(0);
+
         sceneNewGame = new Scene(root, HEIGHT, WIDTH);
         MainApp.stage.setTitle("BLOWN");
         MainApp.stage.setScene(sceneNewGame);
@@ -155,21 +166,26 @@ public class NewGame {
                     up = false;
                 }
                 if (event.getCode() == controll[1]) {
+                    countPhysicLeft=0;
+                    timelineResetRotateCar.stop();
+                    timelinePhysicLeft.play();
                     timelineLeftMove.stop();
-                    root.getChildren().get(3).setRotate(0);
+                    timelineResetRotateCar.play();// ПЛАВНЫЙ РЕСЕТ НАКЛОНА ТАЧКИ
                     left = false;
                 }
                 if (event.getCode() == controll[2]) {
                     down = false;
                 }
                 if (event.getCode() == controll[3]) {
+                    countPhysicRight=0;
+                    timelineResetRotateCar.stop();
+                    timelinePhysicRight.play();
                     timelineRightMove.stop();
-                    root.getChildren().get(3).setRotate(0);
+                    timelineResetRotateCar.play(); // ПЛАВНЫЙ РЕСЕТ НАКЛОНА ТАЧКИ
                     right = false;
                 }
             }
         });
-
         timelineRightMove = new Timeline(new KeyFrame(
                 Duration.millis(2),
                 ae -> right()));
@@ -184,6 +200,27 @@ public class NewGame {
                 Duration.millis(3),
                 ae -> smokeDowns()));
         timelineSmoke.setCycleCount(Animation.INDEFINITE);
+
+        timelineMoneyUp = new Timeline(new KeyFrame(
+                Duration.millis(3),
+                ae -> dollarsUp()));
+        timelineMoneyUp.setCycleCount(Animation.INDEFINITE);
+
+        timelinePhysicLeft = new Timeline(new KeyFrame(
+                Duration.millis(3),
+                ae -> physicLeft()));
+        timelinePhysicLeft.setCycleCount(Animation.INDEFINITE);
+
+        timelinePhysicRight = new Timeline(new KeyFrame(
+                Duration.millis(3),
+                ae -> physicRight()));
+        timelinePhysicRight.setCycleCount(Animation.INDEFINITE);
+
+        timelineResetRotateCar = new Timeline(new KeyFrame(
+                Duration.millis(2),
+                ae -> resetRotateCar()));
+        timelineResetRotateCar.setCycleCount(Animation.INDEFINITE);
+
 
 
         sceneNewGame.setOnKeyPressed(new EventHandler<KeyEvent>() {
@@ -204,10 +241,16 @@ public class NewGame {
                     scene.getStylesheets().add("/styles/main.css");
                     MainApp.stage.setTitle("BLOWN");
                     MainApp.stage.setScene(scene);
+
                     timeline.stop();
                     timelineLeftMove.stop();
                     timelineRightMove.stop();
                     timelineSmoke.stop();
+                    timelineMoneyUp.stop();
+                    timelinePhysicRight.stop();
+                    timelinePhysicLeft.stop();
+                    timelineResetRotateCar.stop();
+
                     up = false;
                     left = false;
                     right = false;
@@ -331,6 +374,8 @@ public class NewGame {
                     pointsMoney[i + 1] > nodeCar.getLayoutY() && pointsMoney[i + 1] < nodeCar.getLayoutY() + currentCar.getHeight()) {
                 randomMoney(root.getChildren().get(6), root.getChildren().get(5));
                 money += 100;
+                dollarsReset();
+                timelineMoneyUp.play();
                 break;
             }
         }
@@ -394,9 +439,9 @@ public class NewGame {
     public static void right() {
         Node node = root.getChildren().get(3);
         if (node.getLayoutX() < 750) {
-            node.setLayoutX(node.getLayoutX() + 0.8);
-            if (node.getRotate() < 7) {
-                node.setRotate(node.getRotate() + 0.05);
+            node.setLayoutX(node.getLayoutX() + 1);
+            if (node.getRotate() < 9) {
+                node.setRotate(node.getRotate() + 0.06);
             }
         }
 
@@ -405,9 +450,9 @@ public class NewGame {
     public static void left() {
         Node node = root.getChildren().get(3);
         if (node.getLayoutX() > 440) {
-            node.setLayoutX(node.getLayoutX() - 0.8);
-            if (node.getRotate() > -7) {
-                node.setRotate(node.getRotate() - 0.05);
+            node.setLayoutX(node.getLayoutX() - 1);
+            if (node.getRotate() > -9) {
+                node.setRotate(node.getRotate() - 0.06);
             }
         }
     }
@@ -441,21 +486,84 @@ public class NewGame {
         Node nodeLeft=root.getChildren().get(9);
         Node nodeRight=root.getChildren().get(10);
 
-        nodeLeft.setOpacity(nodeLeft.getOpacity()+0.003);
-        nodeRight.setOpacity(nodeRight.getOpacity()+0.003);
-        nodeRight.setLayoutY(nodeRight.getLayoutY()+0.6);
-        nodeLeft.setLayoutY(nodeLeft.getLayoutY()+0.6);
+        nodeLeft.setOpacity(nodeLeft.getOpacity()+0.002);
+        nodeRight.setOpacity(nodeRight.getOpacity()+0.002);
+        nodeRight.setLayoutY(nodeRight.getLayoutY()+0.4);
+        nodeLeft.setLayoutY(nodeLeft.getLayoutY()+0.4);
     }
 
     void smokeReset(){
         Node nodeLeft=root.getChildren().get(9);
         Node nodeRight=root.getChildren().get(10);
 
-        nodeLeft.setLayoutY(root.getChildren().get(3).getLayoutY()+130);
+        nodeLeft.setLayoutY(root.getChildren().get(3).getLayoutY()+165);
         nodeLeft.setLayoutX(root.getChildren().get(3).getLayoutX()+50);
 
-        nodeRight.setLayoutY(root.getChildren().get(3).getLayoutY()+130);
+        nodeRight.setLayoutY(root.getChildren().get(3).getLayoutY()+165);
         nodeRight.setLayoutX(root.getChildren().get(3).getLayoutX()-30);
+    }
+
+    void dollarsUp(){
+        Node money=root.getChildren().get(11);
+        Node car=root.getChildren().get(3);
+        if (car.getLayoutX()>600){
+            money.setLayoutX(money.getLayoutX()-2);
+            money.setLayoutY(money.getLayoutY()-1);
+        } else {
+            money.setLayoutX(money.getLayoutX()-1);
+            money.setLayoutY(money.getLayoutY()-1);
+        }
+
+        money.setRotate(money.getRotate()+0.35);
+        money.setOpacity(money.getOpacity()-0.003);
+
+    }
+
+    void dollarsReset(){
+        timelineMoneyUp.stop();
+        Node car=root.getChildren().get(3);
+        Node money=root.getChildren().get(11);
+        money.setOpacity(1);
+        money.setLayoutX(car.getLayoutX()-30);
+        money.setLayoutY(car.getLayoutY()-50);
+        money.setRotate(0);
+    }
+
+    void physicLeft(){
+        Node node = root.getChildren().get(3);
+        countPhysicLeft++;
+        if ((node.getLayoutX() > 440) && (countPhysicLeft!=70)) {
+            node.setLayoutX(node.getLayoutX()-0.6);
+        }
+        if (countPhysicLeft==70){
+            timelinePhysicLeft.stop();
+        }
+
+    }
+
+    void physicRight(){
+        Node node = root.getChildren().get(3);
+        countPhysicRight++;
+        if ((node.getLayoutX() < 750) && (countPhysicRight!=70)) {
+            node.setLayoutX(node.getLayoutX()+0.6);
+        }
+        if (countPhysicRight==70){
+            timelinePhysicRight.stop();
+        }
+    }
+
+    void resetRotateCar(){
+        Node car=root.getChildren().get(3);
+
+        if ((car.getRotate()>=-9) && (car.getRotate()<0)){
+            car.setRotate(car.getRotate()+0.05);
+        }
+        if ((car.getRotate()<=9)&& (car.getRotate()>0)){
+            car.setRotate(car.getRotate()-0.05);
+        }
+        if (car.getRotate()==0){
+            timelineResetRotateCar.stop();
+        }
     }
 
 }
