@@ -167,9 +167,10 @@ public class NewGame {
                 }
                 if (event.getCode() == controll[1]) {
                     countPhysicLeft=0;
-                    timelineResetRotateCar.stop();
                     timelinePhysicLeft.play();
                     timelineLeftMove.stop();
+                    root.getChildren().get(3).setRotate(0);
+                    timelineResetRotateCar.stop();
                     timelineResetRotateCar.play();// ПЛАВНЫЙ РЕСЕТ НАКЛОНА ТАЧКИ
                     left = false;
                 }
@@ -178,9 +179,10 @@ public class NewGame {
                 }
                 if (event.getCode() == controll[3]) {
                     countPhysicRight=0;
-                    timelineResetRotateCar.stop();
                     timelinePhysicRight.play();
                     timelineRightMove.stop();
+                    root.getChildren().get(3).setRotate(0);
+                    timelineResetRotateCar.stop();
                     timelineResetRotateCar.play(); // ПЛАВНЫЙ РЕСЕТ НАКЛОНА ТАЧКИ
                     right = false;
                 }
@@ -217,7 +219,7 @@ public class NewGame {
         timelinePhysicRight.setCycleCount(Animation.INDEFINITE);
 
         timelineResetRotateCar = new Timeline(new KeyFrame(
-                Duration.millis(2),
+                Duration.millis(2.5),
                 ae -> resetRotateCar()));
         timelineResetRotateCar.setCycleCount(Animation.INDEFINITE);
 
