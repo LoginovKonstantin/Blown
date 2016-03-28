@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SettingController">
    <children>
-      <RadioButton onAction="#checkRadio" fx:id="radioBtnUp" layoutX="559.0" layoutY="462.0" mnemonicParsing="false">
+      <RadioButton fx:id="radioBtnUp" layoutX="454.0" layoutY="455.0" mnemonicParsing="false" onAction="#checkRadio">
          <toggleGroup>
             <ToggleGroup fx:id="group" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton onAction="#checkRadio" fx:id="radioBtnDown" layoutX="559.0" layoutY="517.0" mnemonicParsing="false" toggleGroup="$group" />
+      <RadioButton fx:id="radioBtnDown" layoutX="654.0" layoutY="455.0" mnemonicParsing="false" onAction="#checkRadio" toggleGroup="$group" />
+      <ImageView fx:id="summerSetting" fitHeight="159.0" fitWidth="131.0" layoutX="500.0" layoutY="600.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="winterSetting" fitHeight="159.0" fitWidth="131.0" layoutX="144.0" layoutY="423.0" pickOnBounds="true" preserveRatio="true" />
+      <RadioButton fx:id="radioBtnSummer" layoutX="454.0" layoutY="550.0" mnemonicParsing="false" onAction="#checkRadio">
+         <toggleGroup>
+            <ToggleGroup fx:id="groupSum" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="radioBtnWinter" layoutX="654.0" layoutY="550.0" mnemonicParsing="false" onAction="#checkRadio" toggleGroup="$groupSum"/>
    </children>
 </Pane>

@@ -170,8 +170,6 @@ public class NewGame {
                     timelinePhysicLeft.play();
                     timelineLeftMove.stop();
                     root.getChildren().get(3).setRotate(0);
-                    timelineResetRotateCar.stop();
-                    timelineResetRotateCar.play();// ПЛАВНЫЙ РЕСЕТ НАКЛОНА ТАЧКИ
                     left = false;
                 }
                 if (event.getCode() == controll[2]) {
@@ -182,8 +180,6 @@ public class NewGame {
                     timelinePhysicRight.play();
                     timelineRightMove.stop();
                     root.getChildren().get(3).setRotate(0);
-                    timelineResetRotateCar.stop();
-                    timelineResetRotateCar.play(); // ПЛАВНЫЙ РЕСЕТ НАКЛОНА ТАЧКИ
                     right = false;
                 }
             }
@@ -218,10 +214,7 @@ public class NewGame {
                 ae -> physicRight()));
         timelinePhysicRight.setCycleCount(Animation.INDEFINITE);
 
-        timelineResetRotateCar = new Timeline(new KeyFrame(
-                Duration.millis(2.5),
-                ae -> resetRotateCar()));
-        timelineResetRotateCar.setCycleCount(Animation.INDEFINITE);
+
 
 
 
@@ -251,7 +244,6 @@ public class NewGame {
                     timelineMoneyUp.stop();
                     timelinePhysicRight.stop();
                     timelinePhysicLeft.stop();
-                    timelineResetRotateCar.stop();
 
                     up = false;
                     left = false;
@@ -286,6 +278,13 @@ public class NewGame {
                     radial.setValue(Math.pow(speedCar, -1) * 120);
                     if (radial.getValue() > currentMaxSpeed) {
                         currentMaxSpeed = radial.getValue();
+                    }
+
+                    if ((event.getCode()==KeyCode.SPACE) && (up)){
+                        if (speedCar > maxSpeedCar) {
+                            resetTimer(timeline, speedCar);
+                            speedCar -= 0.2;
+                        }
                     }
                 }
             }
@@ -442,7 +441,7 @@ public class NewGame {
         Node node = root.getChildren().get(3);
         if (node.getLayoutX() < 750) {
             node.setLayoutX(node.getLayoutX() + 1);
-            if (node.getRotate() < 9) {
+            if (node.getRotate() < 11) {
                 node.setRotate(node.getRotate() + 0.06);
             }
         }
@@ -453,7 +452,7 @@ public class NewGame {
         Node node = root.getChildren().get(3);
         if (node.getLayoutX() > 440) {
             node.setLayoutX(node.getLayoutX() - 1);
-            if (node.getRotate() > -9) {
+            if (node.getRotate() > -11) {
                 node.setRotate(node.getRotate() - 0.06);
             }
         }
@@ -554,18 +553,6 @@ public class NewGame {
         }
     }
 
-    void resetRotateCar(){
-        Node car=root.getChildren().get(3);
 
-        if ((car.getRotate()>=-9) && (car.getRotate()<0)){
-            car.setRotate(car.getRotate()+0.05);
-        }
-        if ((car.getRotate()<=9)&& (car.getRotate()>0)){
-            car.setRotate(car.getRotate()-0.05);
-        }
-        if (car.getRotate()==0){
-            timelineResetRotateCar.stop();
-        }
-    }
 
 }

@@ -40,7 +40,8 @@ public class Setting {
                     try {
                         File f = new File("./src/main/resources/files/setting");
                         PrintWriter writer = new PrintWriter(f);
-                        writer.write(SettingController.controll);
+                        writer.write(SettingController.controll+"\n");
+                        writer.write(SettingController.weather);
                         writer.close();
                     } catch (FileNotFoundException e) {
                         System.out.println("проблемы при записи в файл" + e);
