@@ -37,9 +37,9 @@ public class NewGame {
     final static int HEIGHT = 1280;
     final static int WIDTH = 680;
 
-    final static Image BACKGROUND_IMAGE1 = new Image("/images/road1.jpg");
-    final static Image BACKGROUND_IMAGE2 = new Image("/images/road2.jpg");
-    final static Image BACKGROUND_IMAGE3 = new Image("/images/road3.jpg");
+    final static Image BACKGROUND_IMAGE1 = new Image("/images/background1.jpg");
+    final static Image BACKGROUND_IMAGE2 = new Image("/images/background2.jpg");
+    final static Image BACKGROUND_IMAGE3 = new Image("/images/background3.jpg");
     private static Image MONEY_PNG = new Image("/images/money.png");
     private static Image BOX_PNG = new Image("/images/box.png");
     private static Image smoke = new Image("/images/smoke.png");
