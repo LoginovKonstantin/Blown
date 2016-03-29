@@ -37,11 +37,11 @@ public class NewGame {
     final static int HEIGHT = 1280;
     final static int WIDTH = 680;
 
-    final static Image BACKGROUND_IMAGE1 = new Image("/images/background1.jpg");
-    final static Image BACKGROUND_IMAGE2 = new Image("/images/background2.jpg");
-    final static Image BACKGROUND_IMAGE3 = new Image("/images/background3.jpg");
+    private static Image backgroundImage1;
+    private static Image backgroundImage2;
+    private static Image backgroundImage3;
     private static Image MONEY_PNG = new Image("/images/money.png");
-    private static Image BOX_PNG = new Image("/images/box.png");
+    private static Image BOX_PNG;
     private static Image smoke = new Image("/images/smoke.png");
     private static Image dollars = new Image("/images/money.png");
 
@@ -87,6 +87,7 @@ public class NewGame {
         labelDistance.setTextFill(Color.PINK);
 
         identifyControll();//определяем управление
+        identifyTheme();//определяем тему
 
         //спидометр
         radial = GaugeBuilder.create()
@@ -99,9 +100,9 @@ public class NewGame {
                 .build();
         currentMaxSpeed = radial.getValue();
 
-        background1 = new ImageView(BACKGROUND_IMAGE1);
-        background2 = new ImageView(BACKGROUND_IMAGE2);
-        background3 = new ImageView(BACKGROUND_IMAGE3);
+        background1 = new ImageView(backgroundImage1);
+        background2 = new ImageView(backgroundImage2);
+        background3 = new ImageView(backgroundImage3);
         moneyPng = new ImageView(MONEY_PNG);
         boxPng = new ImageView(BOX_PNG);
         smokeDownLeft = new ImageView(smoke);
@@ -408,6 +409,21 @@ public class NewGame {
         }
     }
 
+    //получаем тему(зима/лето)
+    public void identifyTheme(){
+        if(SettingController.getWeather().equals("summer") || SettingController.getWeather().equals("")){
+            backgroundImage1 = new Image("/images/road1.jpg");
+            backgroundImage2 = new Image("/images/road2.jpg");
+            backgroundImage3 = new Image("/images/road3.jpg");
+            BOX_PNG = new Image("/images/box.png");
+        }else{
+            backgroundImage1 = new Image("/images/background1.jpg");
+            backgroundImage2 = new Image("/images/background2.jpg");
+            backgroundImage3 = new Image("/images/background3.jpg");
+            BOX_PNG = new Image("/images/snowBox.png");
+        }
+    }
+
     private static void randomMoney(Node money, Node box) {
         money.setLayoutX(0);
         money.setLayoutY(700);
@@ -552,7 +568,5 @@ public class NewGame {
             timelinePhysicRight.stop();
         }
     }
-
-
 
 }
