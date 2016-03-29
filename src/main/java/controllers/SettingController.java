@@ -30,7 +30,9 @@ public class SettingController {
     @FXML
     private RadioButton radioBtnSummer;
     @FXML
-    private ToggleButton toggleButton;
+    private ToggleButton toggleButtonWinter;
+    @FXML
+    private ToggleButton toggleButtonSummer;
 
     public static String controll = "up";
     public static String weather="";
@@ -47,7 +49,8 @@ public class SettingController {
             winterSetting.setImage(new Image("./images/chillWinter.png"));
 
 //            toggleButton = new ToggleButton("", winterSetting);
-            toggleButton.graphicProperty().setValue(winterSetting);
+            toggleButtonWinter.graphicProperty().setValue(winterSetting);
+            toggleButtonSummer.graphicProperty().setValue(summerSetting);
 
             Scanner in = new Scanner(file);
                 controll = in.nextLine();
@@ -60,13 +63,13 @@ public class SettingController {
                     radioBtnDown.setSelected(true);
                 }
             }
-            if(weather.equals("summer")) {
-                radioBtnSummer.setSelected(true);
-            }else{
-                if(weather.equals("winter")){
-                    radioBtnWinter.setSelected(true);
-                }
-            }
+//            if(weather.equals("summer")) {
+//                radioBtnSummer.setSelected(true);
+//            }else{
+//                if(weather.equals("winter")){
+//                    radioBtnWinter.setSelected(true);
+//                }
+//            }
         } catch (FileNotFoundException e) {
             System.out.println("Ошибка при чтении файла" + e);
         } catch (IOException e) {
