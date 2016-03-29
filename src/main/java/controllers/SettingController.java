@@ -61,9 +61,11 @@ public class SettingController {
             }
             if(weather.equals("summer")) {
                 toggleButtonSummer.setSelected(true);
+                toggleButtonSummer.setStyle("-fx-base:lightgreen");
             }else{
                 if(weather.equals("winter")){
                     toggleButtonWinter.setSelected(true);
+                    toggleButtonWinter.setStyle("-fx-base:lightgreen");
                 }
             }
         } catch (FileNotFoundException e) {
