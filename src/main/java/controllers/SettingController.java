@@ -60,15 +60,13 @@ public class SettingController {
                 }
             }
             if(weather.equals("summer")) {
-                toggleButtonSummer.setSelected(true);
                 toggleButtonSummer.setStyle("-fx-base:lightgreen");
             }else{
                 if(weather.equals("winter")){
-                    toggleButtonWinter.setSelected(true);
                     toggleButtonWinter.setStyle("-fx-base:lightgreen");
                 }
             }
-        } catch (FileNotFoundException e) {
+          } catch (FileNotFoundException e) {
             System.out.println("Ошибка при чтении файла" + e);
         } catch (IOException e) {
             System.out.println("Ошибка при чтении файла" + e);
@@ -111,9 +109,13 @@ public class SettingController {
 
     public void checkToggle2(ActionEvent actionEvent) {
         weather = "summer";
+        toggleButtonSummer.setStyle("-fx-base:lightgreen");
+        toggleButtonWinter.setStyle("-fx-base:white");
     }
 
     public void checkToggle1(ActionEvent actionEvent) {
         weather = "winter";
+        toggleButtonWinter.setStyle("-fx-base:lightgreen");
+        toggleButtonSummer.setStyle("-fx-base:white");
     }
 }
