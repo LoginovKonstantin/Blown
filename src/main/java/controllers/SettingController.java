@@ -71,9 +71,8 @@ public class SettingController {
         File file = new File("./src/main/resources/files/setting");
         try {
             Scanner in = new Scanner(file);
-            while (in.hasNext()) {
                 controll = in.nextLine();
-            }
+            in.close();
         } catch (FileNotFoundException e) {
 
         }
