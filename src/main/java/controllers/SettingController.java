@@ -34,7 +34,8 @@ public class SettingController {
     private ToggleButton toggleButtonSummer;
 
     public static String controll = "up";
-    public static String weather = "";
+
+    public static String weather = "summer";
 
     @FXML
     private void initialize() {
@@ -44,9 +45,8 @@ public class SettingController {
             winterSetting.setImage(new Image("./images/chillWinter.png"));
 
             toggleButtonWinter.graphicProperty().setValue(winterSetting);
+
             toggleButtonSummer.graphicProperty().setValue(summerSetting);
-
-
 
             Scanner in = new Scanner(file);
             controll = in.nextLine();
@@ -105,11 +105,13 @@ public class SettingController {
         if (radioBtnDown.isSelected()) {
             controll = "down";
         }
-        if (toggleButtonSummer.isSelected()) {
-            weather = "summer";
-        }
-        if (toggleButtonWinter.isSelected()) {
-            weather = "winter";
-        }
+    }
+
+    public void checkToggle2(ActionEvent actionEvent) {
+        weather = "summer";
+    }
+
+    public void checkToggle1(ActionEvent actionEvent) {
+        weather = "winter";
     }
 }

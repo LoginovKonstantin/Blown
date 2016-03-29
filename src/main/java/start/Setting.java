@@ -22,7 +22,7 @@ public class Setting {
     private static Scene sceneSetting;
     private static Parent rootSetting;
 
-    public void showScene(){
+    public void showScene() {
         try {
             rootSetting = FXMLLoader.load(getClass().getResource("/fxml/setting.fxml"));
         } catch (IOException e) {
@@ -36,11 +36,11 @@ public class Setting {
 
         sceneSetting.setOnKeyPressed(new EventHandler<KeyEvent>() {
             public void handle(KeyEvent event) {
-                if(event.getCode()== KeyCode.ESCAPE){
+                if (event.getCode() == KeyCode.ESCAPE) {
                     try {
                         File f = new File("./src/main/resources/files/setting");
                         PrintWriter writer = new PrintWriter(f);
-                        writer.write(SettingController.controll+"\n");
+                        writer.write(SettingController.controll + "\n");
                         writer.write(SettingController.weather);
                         writer.close();
                     } catch (FileNotFoundException e) {
