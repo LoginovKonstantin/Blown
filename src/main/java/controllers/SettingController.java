@@ -3,6 +3,7 @@ package controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -28,6 +29,9 @@ public class SettingController {
     private RadioButton radioBtnWinter;
     @FXML
     private RadioButton radioBtnSummer;
+    @FXML
+    private ToggleButton toggleButton;
+
     public static String controll = "up";
     public static String weather="";
 
@@ -41,6 +45,9 @@ public class SettingController {
             winterSetting.setLayoutX(685);
             winterSetting.setLayoutY(510);
             winterSetting.setImage(new Image("./images/chillWinter.png"));
+
+//            toggleButton = new ToggleButton("", winterSetting);
+            toggleButton.graphicProperty().setValue(winterSetting);
 
             Scanner in = new Scanner(file);
                 controll = in.nextLine();

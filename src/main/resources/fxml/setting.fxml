@@ -20,6 +20,7 @@
             <ToggleGroup fx:id="groupSum" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton fx:id="radioBtnWinter" layoutX="654.0" layoutY="550.0" mnemonicParsing="false" onAction="#checkRadio" toggleGroup="$groupSum"/>
+      <RadioButton fx:id="radioBtnWinter" layoutX="654.0" layoutY="550.0" mnemonicParsing="false" onAction="#checkRadio" toggleGroup="$groupSum" />
+      <ToggleButton fx:id="toggleButton" layoutX="221.0" layoutY="535.0" mnemonicParsing="false" />
    </children>
 </Pane>
